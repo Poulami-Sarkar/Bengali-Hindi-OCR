@@ -1,0 +1,32 @@
+    
+Bootstrap:docker
+From:ubuntu:latest
+
+%labels
+        MAINTAINER Poulami-Sarkar
+
+%environment
+        export LANGUAGE=en_US.UTF-8
+        export LANG=en_US.UTF-8
+        export LC_ALL=en_US.UTF-8
+
+%post
+        apt-get update
+        apt install tesseract-ocr
+        apt install libtesseract-dev
+        pip install pytesseract
+        pip install -r requirements.txt
+
+%runscript
+        echo "The code takes one input input.png and returns the OCR output in the file outputs/output.txt" 
+        echo "Running text detection. The output can be found in the file outputs/out.jpg"
+        python textdetection.py
+        echo "Running OCR. Output in file outputs/output.txt"
+        python bengali.py
+
+# Notes
+
+# There may be an issue if you want to run Jupyter Notebook from the Singularity image -- here's a hint for a workaround:
+# Solve Jupyter permission issue
+#    CMD unset XDG_RUNTIME_DIR && \ 
+#    jupyter notebook --port=12220 --no-browser

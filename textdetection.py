@@ -4,7 +4,7 @@ import sys
 import math
 import numpy as np
 
-im = cv2.imread('img/1.png', cv2.IMREAD_COLOR)
+im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
 
 confThreshold = 0.5
 nmsThreshold = 0.5
@@ -68,7 +68,7 @@ def decode(scores, geometry, scoreThresh):
     # Return detections and confidences
     return [detections, confidences]
 
-cap = ap = cv2.VideoCapture("img/1.png")
+cap = ap = cv2.VideoCapture("img/input.png")
 
 while cv2.waitKey(1) < 0:
     # Read frame
