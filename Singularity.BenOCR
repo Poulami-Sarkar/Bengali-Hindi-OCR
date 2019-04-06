@@ -12,8 +12,8 @@ From:ubuntu:latest
 
 %post
         apt-get update
-        apt install tesseract-ocr
-        apt install libtesseract-dev
+        apt-get install tesseract-ocr
+        apt-get install libtesseract-dev
         pip install pytesseract
         pip install -r requirements.txt
 
