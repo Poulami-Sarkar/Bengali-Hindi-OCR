@@ -11,9 +11,9 @@ From:ubuntu:latest
         export LC_ALL=en_US.UTF-8
 
 %post
-        apt-get update
-        apt-get install tesseract-ocr
-        apt-get install libtesseract-dev
+        
+        apt install tesseract-ocr
+        apt install libtesseract-dev
         pip install pytesseract
         pip install -r requirements.txt
 
