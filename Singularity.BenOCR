@@ -12,10 +12,10 @@ From:ubuntu:latest
 
 %post
         apt update
-        apt install tesseract-ocr
-        apt install libtesseract-dev
-        pip install pytesseract
-        pip install -r requirements.txt
+        apt install  -y tesseract-ocr
+        apt install -y libtesseract-dev
+        pip install -y pytesseract
+        pip install -r -y requirements.txt
 
 %runscript
         echo "The code takes one input input.png and returns the OCR output in the file outputs/output.txt" 
