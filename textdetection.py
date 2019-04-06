@@ -108,5 +108,6 @@ while cv2.waitKey(1) < 0:
     # Put efficiency information
     cv2.putText(frame, label, (0, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0))
     # Display the frame
-    #cv2.imshow(kWinName,frame)
+    cv2.imshow(kWinName,frame)
     cv2.imwrite('outputs/out.jpg',frame)
+    break
