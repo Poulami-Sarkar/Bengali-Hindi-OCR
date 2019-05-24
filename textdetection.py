@@ -8,14 +8,12 @@ im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
 
 confThreshold = 0.5
 nmsThreshold = 0.5
-inpWidth = 320
+inpWidth = 480
 inpHeight = 320
 model = "frozen_east_text_detection.pb"
 
 net = cv2.dnn.readNet("frozen_east_text_detection.pb")
-blob = cv2.dnn.blobFromImage(im, 1.0, (320, 320), (123.68, 116.78, 103.94), True, False)
-
-kWinName = "EAST: An Efficient and Accurate Scene Text Detector"
+kWinName = "Text Detector running"
 cv2.namedWindow(kWinName, cv2.WINDOW_NORMAL)
 outNames = []
 outNames.append("feature_fusion/Conv_7/Sigmoid")
@@ -68,7 +66,7 @@ def decode(scores, geometry, scoreThresh):
     # Return detections and confidences
     return [detections, confidences]
 
-cap = ap = cv2.VideoCapture("img/input.png")
+cap = ap = cv2.VideoCapture("720p.mp4")
 
 while cv2.waitKey(1) < 0:
     # Read frame
@@ -94,9 +92,11 @@ while cv2.waitKey(1) < 0:
     [boxes, confidences] = decode(scores, geometry, confThreshold)
     # Apply NMS
     indices = cv2.dnn.NMSBoxesRotated(boxes, confidences, confThreshold,nmsThreshold)
+    no =1
     for i in indices:
         # get 4 corners of the rotated rect
         vertices = cv2.boxPoints(boxes[i[0]])
+        #rint(p1," ",p2)
         # scale the bounding box coordinates based on the respective ratios
         for j in range(4):
             vertices[j][0] *= rW
@@ -105,9 +105,13 @@ while cv2.waitKey(1) < 0:
             p1 = (vertices[j][0], vertices[j][1])
             p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
             cv2.line(frame, p1, p2, (0, 255, 0), 1);
+        cropped = frame[math.floor(vertices[1][1]):math.ceil(vertices[3][1]),math.floor(vertices[1][0]):math.ceil(vertices[3][0])]
+        no+=1
+        #cv2.imwrite(str(no)+'.jpg',cropped)
+    print("indices: ",len(indices))
     # Put efficiency information
     cv2.putText(frame, label, (0, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0))
     # Display the frame
     cv2.imshow(kWinName,frame)
-    cv2.imwrite('outputs/out.jpg',frame)
-    break
+    #cv2.imwrite('out.jpg',frame)
+    #break
