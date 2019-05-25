@@ -2,7 +2,9 @@ import pytesseract
 import cv2
 import sys
 import math
+import pickle
 import numpy as np
+from bengali import ocr,fetch_output
 
 im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
 
@@ -18,6 +20,7 @@ cv2.namedWindow(kWinName, cv2.WINDOW_NORMAL)
 outNames = []
 outNames.append("feature_fusion/Conv_7/Sigmoid")
 outNames.append("feature_fusion/concat_3")
+
 
 def decode(scores, geometry, scoreThresh):
     detections = []
@@ -66,8 +69,12 @@ def decode(scores, geometry, scoreThresh):
     # Return detections and confidences
     return [detections, confidences]
 
-cap = ap = cv2.VideoCapture("720p.mp4")
+cap = ap = cv2.VideoCapture("720p_elections.mp4")
+op = open('outputs/output.txt',"w+")
 
+#frame no
+no =1
+print("press 1 to quit")
 while cv2.waitKey(1) < 0:
     # Read frame
     hasFrame, frame = cap.read()
@@ -92,8 +99,10 @@ while cv2.waitKey(1) < 0:
     [boxes, confidences] = decode(scores, geometry, confThreshold)
     # Apply NMS
     indices = cv2.dnn.NMSBoxesRotated(boxes, confidences, confThreshold,nmsThreshold)
-    no =1
+    
+    
     for i in indices:
+        snip = 0
         # get 4 corners of the rotated rect
         vertices = cv2.boxPoints(boxes[i[0]])
         #rint(p1," ",p2)
@@ -106,12 +115,22 @@ while cv2.waitKey(1) < 0:
             p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
             cv2.line(frame, p1, p2, (0, 255, 0), 1);
         cropped = frame[math.floor(vertices[1][1]):math.ceil(vertices[3][1]),math.floor(vertices[1][0]):math.ceil(vertices[3][0])]
-        no+=1
-        #cv2.imwrite(str(no)+'.jpg',cropped)
-    print("indices: ",len(indices))
+        # OCR on one frame 
+        if no == 1: 
+            text =ocr(cropped,0)
+            #print(text)
+            op.write(text)
+            op.write('\n')
+            cv2.imwrite('img/frame_'+str(no)+'_'+str(i)+'.jpg',cropped)
+    no+=1
+    #break
+    op.close()
     # Put efficiency information
     cv2.putText(frame, label, (0, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0))
     # Display the frame
     cv2.imshow(kWinName,frame)
     #cv2.imwrite('out.jpg',frame)
     #break
+print("done")
+print("Writing")
+fetch_output()
