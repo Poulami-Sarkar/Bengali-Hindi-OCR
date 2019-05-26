@@ -10,7 +10,7 @@ import re
 def ocr(file,option): 
   # Define config parameters.
   # '--oem 1' for using LSTM OCR Engine
-  config = ('-l ben+eng --oem 1 --psm 3')
+  config = ('-l ben --oem 1 --psm 3')
   if option == 1:
     # Read image from disk
     im = cv2.imread(file, cv2.IMREAD_COLOR)
@@ -22,8 +22,9 @@ def ocr(file,option):
   # Print recognized text
   return(text)
 
-
-#print(ocr(filename+'cr2.png',0))
+filename = 'img/'
+print("text")
+print(ocr(filename+'frame_1_[583].jpg',0))
 
 def fetch_output():
   filename = 'img/'

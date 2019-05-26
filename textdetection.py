@@ -110,11 +110,11 @@ while cv2.waitKey(1) < 0:
         for j in range(4):
             vertices[j][0] *= rW
             vertices[j][1] *= rH
+        cropped = frame[math.floor(vertices[1][1])-4:math.ceil(vertices[3][1]+4),math.floor(vertices[1][0])-4:math.ceil(vertices[3][0])+4]
         for j in range(4):
             p1 = (vertices[j][0], vertices[j][1])
             p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
             cv2.line(frame, p1, p2, (0, 255, 0), 1);
-        cropped = frame[math.floor(vertices[1][1]):math.ceil(vertices[3][1]),math.floor(vertices[1][0]):math.ceil(vertices[3][0])]
         # OCR on one frame 
         if no == 1: 
             text =ocr(cropped,0)

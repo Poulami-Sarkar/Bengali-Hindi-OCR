@@ -6,11 +6,15 @@ Then the detected ROIs are extracted and OCR, implemented using tesseract 4.0 is
  
 ## Prequisites
 
-	`apt update`
-        `apt install -y python3-pip build-essential libssl-dev libffi-dev python3-dev
-         apt install  -y tesseract-ocr
-         apt install -y libtesseract-dev libsm-dev
-         pip3 install pytesseract opencv-python numpy`
+`apt update`
+`apt install -y python3-pip build-essential libssl-dev` `libffi-dev python3-dev`
+`apt install  -y tesseract-ocr`
+`apt install -y libtesseract-dev libsm-dev`
+`pip3 install pytesseract opencv-python numpy`
+
+## Working
+
+
 
 ## Running the code
 
