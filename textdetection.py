@@ -69,7 +69,7 @@ def decode(scores, geometry, scoreThresh):
     # Return detections and confidences
     return [detections, confidences]
 
-cap = ap = cv2.VideoCapture("720p_elections.mp4")
+cap = ap = cv2.VideoCapture("720p.mp4")
 op = open('outputs/output.txt',"w+")
 
 #frame no
@@ -100,7 +100,7 @@ while cv2.waitKey(1) < 0:
     # Apply NMS
     indices = cv2.dnn.NMSBoxesRotated(boxes, confidences, confThreshold,nmsThreshold)
     
-    
+    print(no)
     for i in indices:
         snip = 0
         # get 4 corners of the rotated rect
@@ -110,12 +110,22 @@ while cv2.waitKey(1) < 0:
         for j in range(4):
             vertices[j][0] *= rW
             vertices[j][1] *= rH
-        cropped = frame[math.floor(vertices[1][1])-4:math.ceil(vertices[3][1]+4),math.floor(vertices[1][0])-4:math.ceil(vertices[3][0])+4]
         for j in range(4):
             p1 = (vertices[j][0], vertices[j][1])
             p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
-            cv2.line(frame, p1, p2, (0, 255, 0), 1);
+            cv2.line(frame, p1, p2, (0, 255, 0), 3);
+        cropped = frame[math.floor(vertices[1][1])-4:math.ceil(vertices[3][1]+4),math.floor(vertices[1][0])-4:math.ceil(vertices[3][0])+4]
+        '''
+        try:
+            text =ocr(cropped,0)
+            print(text,end=' ')
+            op.write(text +' ')
+        except:
+            print(' ',end='')
+            op.write(' ')
+        '''
         # OCR on one frame 
+        #cv2.imwrite('img/f-'+str(no)+'-'+str(vertices[1][1])+'.'+str(vertices[1][0])+'.jpg',cropped)
         if no == 1: 
             text =ocr(cropped,0)
             #print(text)
@@ -124,13 +134,14 @@ while cv2.waitKey(1) < 0:
             cv2.imwrite('img/frame_'+str(no)+'_'+str(i)+'.jpg',cropped)
     no+=1
     #break
-    op.close()
+    #fetch_output(op)
+    print()
+    #op.write('\n')
     # Put efficiency information
     cv2.putText(frame, label, (0, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0))
     # Display the frame
     cv2.imshow(kWinName,frame)
-    #cv2.imwrite('out.jpg',frame)
-    #break
+op.close()   
 print("done")
 print("Writing")
-fetch_output()
+#fetch_output()

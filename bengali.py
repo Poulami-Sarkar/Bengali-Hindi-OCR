@@ -3,6 +3,7 @@ import cv2
 import sys
 import math
 import numpy as np
+import os
 from os import listdir
 from os.path import isfile, join
 import re
@@ -10,13 +11,14 @@ import re
 def ocr(file,option): 
   # Define config parameters.
   # '--oem 1' for using LSTM OCR Engine
-  config = ('-l ben --oem 1 --psm 3')
+  config = ('-l hin+eng --oem 1 --psm 3')
   if option == 1:
     # Read image from disk
     im = cv2.imread(file, cv2.IMREAD_COLOR)
   else :
-        im = file
+    im = file
   # Run tesseract OCR on image
+  
   text = pytesseract.image_to_string(im, config=config)
  
   # Print recognized text
@@ -24,15 +26,22 @@ def ocr(file,option):
 
 filename = 'img/'
 print("text")
-print(ocr(filename+'frame_1_[583].jpg',0))
+#print(ocr(filename+'frame_98_[110].jpg',1))
 
-def fetch_output():
+def fetch_output(op):
   filename = 'img/'
-  op = open('outputs/output.txt',"w")
+  #op = open('outputs/output.txt',"w+")
   print("Writing")
-  for f in listdir('img/'):
+  l =sorted(listdir('img/'))
+  for f in l:
       if re.match('.*\.??g',f):
-          op.write(ocr(filename+f,1))
-          op.write('\n')
+          try:
+            op.write(ocr(filename+f,1))
+            op.write(' ')
+          except:
+            print(f)
+          os.remove(filename+f)
 
-  op.close()
+  #op.close()
+
+#fetch_output()
