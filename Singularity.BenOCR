@@ -21,9 +21,9 @@ From:ubuntu:latest
 %runscript
         echo "The code takes one input input.png and returns the OCR output in the file outputs/output.txt" 
         echo "Running text detection. The output can be found in the file outputs/out.jpg"
-        python3 textdetection.py
+        python3 textdetection.py 2019-01-04_1320_IN_DD-News_Swach_Bharat.mp4
         echo "Running OCR. Output in file outputs/output.txt"
-        python3 bengali.py
+        #python3 bengali.py
 
 # Notes
 
