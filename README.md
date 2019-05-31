@@ -18,4 +18,6 @@ Then the detected ROIs are extracted and OCR, implemented using tesseract 4.0 is
 
 ## Running the code
 
-`python3 textdetection.py`
+`python3 textdetection.py <filename>`
+Specify additional argument 'O' for running OCR.
+Output is saved to the file output/output.txt
