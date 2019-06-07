@@ -15,12 +15,12 @@ inpHeight = 320
 model = "frozen_east_text_detection.pb"
 
 net = cv2.dnn.readNet("frozen_east_text_detection.pb")
+
 kWinName = "Text Detector running"
-cv2.namedWindow(kWinName, cv2.WINDOW_NORMAL)
+#cv2.namedWindow(kWinName, cv2.WINDOW_NORMAL)
 outNames = []
 outNames.append("feature_fusion/Conv_7/Sigmoid")
 outNames.append("feature_fusion/concat_3")
-
 
 def decode(scores, geometry, scoreThresh):
     detections = []
@@ -75,6 +75,7 @@ op = open('outputs/output.txt',"w+")
 #frame no
 no =1
 print("press 1 to quit")
+
 while cv2.waitKey(1) < 0:
     arg =len(sys.argv)
     # Read frame
@@ -127,8 +128,8 @@ while cv2.waitKey(1) < 0:
     # Put efficiency information
     cv2.putText(frame, label, (0, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0))
     # Display the frame
-    cv2.imshow(kWinName,frame)
+    #cv2.imshow(kWinName,frame)
 op.close()   
 print("done")
 print("Writing")
-#fetch_output()
+#fetch_output()'''
