@@ -23,6 +23,25 @@ outNames = []
 outNames.append("feature_fusion/Conv_7/Sigmoid")
 outNames.append("feature_fusion/concat_3")
 
+def hash(vertex):
+  return int(vertex/10)
+
+def ticker_detect(vertices,ticker):
+  if int(vertices[1][1]) >= 460:
+    # is a ticker
+    if ticker[2] > vertices[1][1]:
+      ticker[2] = vertices[1][1]
+    if ticker[3] < vertices[0][1]:
+      ticker[3] = vertices[0][1]
+    if ticker[0] > vertices[0][0] and vertices[0][0] > 0:
+      ticker[0]  = vertices[0][0]   
+    if ticker[1] < vertices[2][0] and vertices[2][0] < 640:
+      ticker[1] = vertices[2][0]
+    return [1,ticker]
+  else :
+    return [0,ticker]
+       
+
 def decode(scores, geometry, scoreThresh):
     detections = []
     confidences = []
@@ -74,14 +93,19 @@ cap = ap = cv2.VideoCapture(str(sys.argv[1]))
 op = open('outputs/output.txt',"w+")
 
 #frame no
-no =1
 print("press 1 to quit")
 def detect_text(file):
+    no = 109
     cap = ap = cv2.VideoCapture(file)
     while cv2.waitKey(1) < 0:
-        arg =len(sys.argv)
-        # Read frame
+        no+=1
         hasFrame, frame = cap.read()
+        if no%110 != 0 :
+          if no%114 != 0:
+            continue
+        #print(no)
+        arg =len(sys.argv)
+        # Read frame 
         if not hasFrame:
             cv2.waitKey()
             break
@@ -104,7 +128,9 @@ def detect_text(file):
         # Apply NMS
         indices = cv2.dnn.NMSBoxesRotated(boxes, confidences, confThreshold,nmsThreshold)
         
-        #print(no)
+        #ticker coordinates x1:x2,y1:y2
+        ticker =[999,0,999,0]
+        
         for i in indices:
             snip = 0
             # get 4 corners of the rotated rect
@@ -114,15 +140,20 @@ def detect_text(file):
             for j in range(4):
                 vertices[j][0] *= rW
                 vertices[j][1] *= rH
+            print(ticker)
+            resp,ticker = ticker_detect(vertices,ticker)
+            # if ticker is detected skip
+            if resp == 0:
+                continue
             for j in range(4):
                 p1 = (vertices[j][0], vertices[j][1])
                 p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
                 if arg <=2:
                     cv2.line(frame, p1, p2, (0, 255, 0), 2);
-            print(vertices)
+            #print(vertices)
             cropped = frame[math.floor(vertices[1][1])-4:math.ceil(vertices[3][1]+4),math.floor(vertices[1][0])-4:math.ceil(vertices[3][0])+4]
             if arg >2:
-                cv2.imwrite('img/f-'+str(no)+'-'+str(math.floor(vertices[1][1]))+'.'+str(math.floor(vertices[1][0]))+'.jpg',cropped)
+                cv2.imwrite('img/f-'+'-'+str(hash(vertices[1][1]))+'.'+str(hash(vertices[1][0]))+'.jpg',cropped)
         ## OCR
         if  arg >2:
             if str(sys.argv[2]) == 'O':
@@ -131,13 +162,15 @@ def detect_text(file):
         # Put efficiency information
         cv2.putText(frame, label, (0, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0))
         # Display the frame
-        print(frame.shape)
         frame = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-        print(frame.shape)
+        cropped = frame[int(ticker[2]-4):int(ticker[3]),int(1):int(ticker[1])]
+        cv2.imwrite('img/f-'+'-'+str(no)+'tick.jpg',cropped)
+        #cv2.destroyAllWindows()
         cv2.imshow(kWinName,frame)
     op.close()   
     print("done")
     print("Writing")
+    print(no)
 
 detect_text('video/2019-01-13_1230_IN_DD-News_Desh_Pradesh.mp4')
 '''
