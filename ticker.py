@@ -99,11 +99,15 @@ def detect_text(file):
     cap = ap = cv2.VideoCapture(file)
     while cv2.waitKey(1) < 0:
         no+=1
+        backup=0
         hasFrame, frame = cap.read()
+        
         if no%110 != 0 :
+          backup =1
           if no%114 != 0:
             continue
-        #print(no)
+        
+        
         arg =len(sys.argv)
         # Read frame 
         if not hasFrame:
@@ -140,6 +144,7 @@ def detect_text(file):
             for j in range(4):
                 vertices[j][0] *= rW
                 vertices[j][1] *= rH
+            print(no)
             print(ticker)
             resp,ticker = ticker_detect(vertices,ticker)
             # if ticker is detected skip
@@ -148,8 +153,8 @@ def detect_text(file):
             for j in range(4):
                 p1 = (vertices[j][0], vertices[j][1])
                 p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
-                if arg <=2:
-                    cv2.line(frame, p1, p2, (0, 255, 0), 2);
+                #if arg <=2:
+                    #cv2.line(frame, p1, p2, (0, 255, 0), 2);
             #print(vertices)
             cropped = frame[math.floor(vertices[1][1])-4:math.ceil(vertices[3][1]+4),math.floor(vertices[1][0])-4:math.ceil(vertices[3][0])+4]
             if arg >2:
@@ -163,8 +168,12 @@ def detect_text(file):
         cv2.putText(frame, label, (0, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0))
         # Display the frame
         frame = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-        cropped = frame[int(ticker[2]-4):int(ticker[3]),int(1):int(ticker[1])]
-        cv2.imwrite('img/f-'+'-'+str(no)+'tick.jpg',cropped)
+        cropped = frame[int(453):int(485),int(1):int(500)]
+        if backup == 0:
+          cv2.imwrite('img/tick'+'-'+str(no)+'.jpg',cropped)
+          prev = no
+        else:
+          cv2.imwrite('backup/f-'+'-'+str(prev)+'tick.jpg',cropped)
         #cv2.destroyAllWindows()
         cv2.imshow(kWinName,frame)
     op.close()   
