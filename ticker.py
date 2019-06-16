@@ -27,14 +27,17 @@ def hash(vertex):
   return int(vertex/10)
 
 def ticker_detect(vertices,ticker):
-  if int(vertices[1][1]) >= 460:
+  if int(vertices[1][1]) >= 450:
     # is a ticker
     if ticker[2] > vertices[1][1]:
       ticker[2] = vertices[1][1]
     if ticker[3] < vertices[0][1]:
       ticker[3] = vertices[0][1]
-    if ticker[0] > vertices[0][0] and vertices[0][0] > 0:
-      ticker[0]  = vertices[0][0]   
+    if ticker[0] > vertices[0][0]:
+      if vertices[0][0] < 0: 
+        ticker[0] =0
+      else:
+        ticker[0]  = vertices[0][0] 
     if ticker[1] < vertices[2][0] and vertices[2][0] < 640:
       ticker[1] = vertices[2][0]
     return [1,ticker]
@@ -144,8 +147,8 @@ def detect_text(file):
             for j in range(4):
                 vertices[j][0] *= rW
                 vertices[j][1] *= rH
-            print(no)
-            print(ticker)
+            #print(no)
+            
             resp,ticker = ticker_detect(vertices,ticker)
             # if ticker is detected skip
             if resp == 0:
@@ -168,12 +171,15 @@ def detect_text(file):
         cv2.putText(frame, label, (0, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0))
         # Display the frame
         frame = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-        cropped = frame[int(453):int(485),int(1):int(500)]
+        #cropped = frame[int(453):int(485),int(1):int(500)]
+        cropped = frame[int(ticker[2]):int(ticker[3]),int(1):int(500)]
+        print(no)
+        print(ticker)
         if backup == 0:
           cv2.imwrite('img/tick'+'-'+str(no)+'.jpg',cropped)
           prev = no
         else:
-          cv2.imwrite('backup/f-'+'-'+str(prev)+'tick.jpg',cropped)
+          cv2.imwrite('backup/tick-'+str(prev)+'.jpg',cropped)
         #cv2.destroyAllWindows()
         cv2.imshow(kWinName,frame)
     op.close()   
@@ -181,7 +187,7 @@ def detect_text(file):
     print("Writing")
     print(no)
 
-detect_text('video/2019-01-13_1230_IN_DD-News_Desh_Pradesh.mp4')
+detect_text('video/2019-01-13_0500_IN_DD-News_News_For_Hearing_Impaired.mp4')
 '''
 for file in listdir("video"):
 
