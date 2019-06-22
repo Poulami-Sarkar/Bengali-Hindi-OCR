@@ -48,7 +48,6 @@ op = open('outputs/output.txt',"w+")
 
 def frameno(f):
   return re.search('\d+',f).group(0)
-
 def fetch_output(op):
   filename = 'img/'
   #op = open('outputs/output.txt',"w+")
@@ -90,4 +89,4 @@ def fetch_output(op):
 
 #op.close()
 
-fetch_output(op)
+#fetch_output(op)

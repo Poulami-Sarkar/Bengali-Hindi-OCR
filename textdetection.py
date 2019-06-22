@@ -139,7 +139,7 @@ def detect_text(file):
     print("done")
     print("Writing")
 
-detect_text('video/2019-01-13_1230_IN_DD-News_Desh_Pradesh.mp4')
+detect_text('video/2019-01-05_1300_IN_DD-News_Nationwide.mp4')
 '''
 for file in listdir("video"):
 

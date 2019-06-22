@@ -24,25 +24,30 @@ outNames.append("feature_fusion/Conv_7/Sigmoid")
 outNames.append("feature_fusion/concat_3")
 
 def hash(vertex):
-  return int(vertex/10)
+  return int(vertex/10)*10
+
+def find_boxes(vertices,array):
+  y = hash(vertices[1][1])
+  if y in array:
+    array[y] = ticker_detect(vertices,array[y])
+  else:
+    array[y] = [vertices[1][0],vertices[3][0],vertices[1][1],vertices[3][1]]
+  return array
 
 def ticker_detect(vertices,ticker):
-  if int(vertices[1][1]) >= 450:
-    # is a ticker
-    if ticker[2] > vertices[1][1]:
-      ticker[2] = vertices[1][1]
-    if ticker[3] < vertices[0][1]:
-      ticker[3] = vertices[0][1]
-    if ticker[0] > vertices[0][0]:
-      if vertices[0][0] < 0: 
-        ticker[0] =0
-      else:
-        ticker[0]  = vertices[0][0] 
-    if ticker[1] < vertices[2][0] and vertices[2][0] < 640:
-      ticker[1] = vertices[2][0]
-    return [1,ticker]
-  else :
-    return [0,ticker]
+  # is a ticker
+  if ticker[2] > vertices[1][1]:
+    ticker[2] = vertices[1][1]
+  if ticker[3] < vertices[0][1]:
+    ticker[3] = vertices[0][1]
+  if ticker[0] > vertices[0][0]:
+    if vertices[0][0] < 0: 
+      ticker[0] =0
+    else:
+      ticker[0]  = vertices[0][0] 
+  if ticker[1] < vertices[2][0] and vertices[2][0] < 640:
+    ticker[1] = vertices[2][0]
+  return ticker
        
 
 def decode(scores, geometry, scoreThresh):
@@ -92,7 +97,7 @@ def decode(scores, geometry, scoreThresh):
     # Return detections and confidences
     return [detections, confidences]
 
-cap = ap = cv2.VideoCapture(str(sys.argv[1]))
+#cap = ap = cv2.VideoCapture(str(sys.argv[1]))
 op = open('outputs/output.txt',"w+")
 
 #frame no
@@ -149,19 +154,29 @@ def detect_text(file):
                 vertices[j][1] *= rH
             #print(no)
             
-            resp,ticker = ticker_detect(vertices,ticker)
-            # if ticker is detected skip
-            if resp == 0:
-                continue
+            if int(vertices[1][1]) >= 450:
+              ticker = ticker_detect(vertices,ticker)
+              resp = 1
+            try:
+              array = find_boxes(vertices,array)
+            except:
+              array ={}
+              array = find_boxes(vertices,array)
+            
             for j in range(4):
                 p1 = (vertices[j][0], vertices[j][1])
                 p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
-                #if arg <=2:
-                    #cv2.line(frame, p1, p2, (0, 255, 0), 2);
+                if arg <2:
+                  cv2.line(frame, p1, p2, (0, 255, 0), 2);
+            # if ticker is detected skip
+            if resp == 1:
+                continue
+            
+            
             #print(vertices)
             cropped = frame[math.floor(vertices[1][1])-4:math.ceil(vertices[3][1]+4),math.floor(vertices[1][0])-4:math.ceil(vertices[3][0])+4]
-            if arg >2:
-                cv2.imwrite('img/f-'+'-'+str(hash(vertices[1][1]))+'.'+str(hash(vertices[1][0]))+'.jpg',cropped)
+            #if arg >2:
+                #cv2.imwrite('img/f-'+'-'+str(hash(vertices[1][1]))+'.'+str(hash(vertices[1][0]))+'.jpg',cropped)
         ## OCR
         if  arg >2:
             if str(sys.argv[2]) == 'O':
@@ -180,6 +195,14 @@ def detect_text(file):
           prev = no
         else:
           cv2.imwrite('backup/tick-'+str(prev)+'.jpg',cropped)
+          print(array)
+          if len(array)>1:
+            for i in array.values():
+              boxes = i
+              print(boxes)
+              cropped = frame[int(boxes[2]):int(boxes[3]),int(boxes[0]):int(boxes[1])]
+              cv2.imwrite('img/'+str(boxes[2])+'.'+str(boxes[0])+'.jpg',cropped)
+              array ={}
         #cv2.destroyAllWindows()
         cv2.imshow(kWinName,frame)
     op.close()   
