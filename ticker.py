@@ -112,7 +112,7 @@ def detect_text(file):
         
         if no%110 != 0 :
           backup =1
-          if no%114 != 0:
+          if (no-10)%110 != 0:
             continue
         
         
@@ -142,6 +142,7 @@ def detect_text(file):
         
         #ticker coordinates x1:x2,y1:y2
         ticker =[999,0,999,0]
+        array ={}
         
         for i in indices:
             snip = 0
@@ -157,6 +158,7 @@ def detect_text(file):
             if int(vertices[1][1]) >= 450:
               ticker = ticker_detect(vertices,ticker)
               resp = 1
+              continue
             try:
               array = find_boxes(vertices,array)
             except:
@@ -176,7 +178,7 @@ def detect_text(file):
             #print(vertices)
             cropped = frame[math.floor(vertices[1][1])-4:math.ceil(vertices[3][1]+4),math.floor(vertices[1][0])-4:math.ceil(vertices[3][0])+4]
             #if arg >2:
-                #cv2.imwrite('img/f-'+'-'+str(hash(vertices[1][1]))+'.'+str(hash(vertices[1][0]))+'.jpg',cropped)
+              #  cv2.imwrite('img/f-'+str(hash(vertices[1][1]))+'.'+str(hash(vertices[1][0]))+'.jpg',cropped)
         ## OCR
         if  arg >2:
             if str(sys.argv[2]) == 'O':
@@ -191,8 +193,8 @@ def detect_text(file):
         print(no)
         print(ticker)
         if backup == 0:
-          cv2.imwrite('img/tick'+'-'+str(no)+'.jpg',cropped)
-          prev = no
+          cv2.imwrite('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg',cropped)
+          prev = cap.get(cv2.CAP_PROP_POS_MSEC)
         else:
           cv2.imwrite('backup/tick-'+str(prev)+'.jpg',cropped)
           print(array)
@@ -201,7 +203,7 @@ def detect_text(file):
               boxes = i
               print(boxes)
               cropped = frame[int(boxes[2]):int(boxes[3]),int(boxes[0]):int(boxes[1])]
-              cv2.imwrite('img/'+str(boxes[2])+'.'+str(boxes[0])+'.jpg',cropped)
+              cv2.imwrite('img/'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
               array ={}
         #cv2.destroyAllWindows()
         cv2.imshow(kWinName,frame)
@@ -210,7 +212,7 @@ def detect_text(file):
     print("Writing")
     print(no)
 
-detect_text('video/2019-01-13_0500_IN_DD-News_News_For_Hearing_Impaired.mp4')
+detect_text('video/2019-01-13_1230_IN_DD-News_Desh_Pradesh.mp4')
 '''
 for file in listdir("video"):
 
