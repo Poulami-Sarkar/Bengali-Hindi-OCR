@@ -41,8 +41,10 @@ def ticker_detect(vertices,ticker):
   if ticker[3] < vertices[0][1]:
     ticker[3] = vertices[0][1]
   if ticker[0] > vertices[0][0]:
+    if ticker[1]+100<vertices[0][0]:
+      return ticker
     if vertices[0][0] < 0: 
-      ticker[0] =0
+      ticker[0] = 0
     else:
       ticker[0]  = vertices[0][0] 
   if ticker[1] < vertices[2][0] and vertices[2][0] < 640:
@@ -172,9 +174,7 @@ def detect_text(file):
                   cv2.line(frame, p1, p2, (0, 255, 0), 2);
             # if ticker is detected skip
             if resp == 1:
-                continue
-            
-            
+                continue            
             #print(vertices)
             cropped = frame[math.floor(vertices[1][1])-4:math.ceil(vertices[3][1]+4),math.floor(vertices[1][0])-4:math.ceil(vertices[3][0])+4]
             #if arg >2:
@@ -202,8 +202,8 @@ def detect_text(file):
             for i in array.values():
               boxes = i
               print(boxes)
-              cropped = frame[int(boxes[2]):int(boxes[3]),int(boxes[0]):int(boxes[1])]
-              cv2.imwrite('img/'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
+              cropped = frame[int(boxes[2]):int(boxes[3]),int(boxes[0]-4):int(boxes[1])+4]
+              cv2.imwrite('img/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
               array ={}
         #cv2.destroyAllWindows()
         cv2.imshow(kWinName,frame)
