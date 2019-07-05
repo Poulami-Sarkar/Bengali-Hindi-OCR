@@ -2,6 +2,6 @@
 *pycache*
 *VSCode*
 *.ipynb
-*.mp4
+*video/*
 *.jpg
 *.png
