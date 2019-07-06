@@ -42,28 +42,26 @@ def fetch_output(op):
             s,ms=divmod(lst[0],1000)
             m,s=divmod(s,60)
             h,m=divmod(m,60)
-            op.write(str(no))
-            op.write('\n')
-            op.write(str(h)+':'+str(m)+':'+str(s)+','+str(ms)+' --> '+str(h)+':'+str(m)+':'+str(s+2)+','+str(ms+200))
-            op.write('\n')
+            op.write(str(2019011312)+str("%02d" %(m))+str("%02d" %(s))+str('.')+str("%03d" %(ms))+'|')
+            s,ms = (s+2,ms+200) if 900+200>=1000 else (s+3,ms+200-1000)
+            m,s = (m+1,s-60) if s>=60 else (m,s)
+            op.write(str(2019011312)+str("%02d" %(m))+str("%02d" %(s+2))+str('.')+str("%03d" %(ms))+'|'+'CC1|')
             for i in lst[1]:
                 try:        
                     text = ocr(filename+str(lst[0])+'.'+str(i)+'0.jpg',1,0) 
                     if text != '':
-                        op.write(text)
-                        op.write('\n')
+                        op.write(text.replace('\r',' ').replace('\n',' '))
+                        op.write('. ')
                 except:
                     try:
                         text = ocr(filename+str(lst[0])+'.'+str(i)+'00.jpg',1,0) 
                         if text != '':
-                            op.write(text)
-                            op.write('\n')
+                            op.write(text.replace('\r',' ').replace('\n',' '))
+                            op.write('. ')
                     except:
                         print(str(lst[0])+'.'+str(i)+'0.jpg')
-
-            op.write('\n')
             no+=1
-
+            op.write('\n')
 op = open("outputs/output.txt","w+")
 fetch_output(op)
 #print(ocr('img/'+'880040.0.410.100.jpg',1,1))
