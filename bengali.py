@@ -13,19 +13,31 @@ import pandas as pd
 def ocr(file,option,d): 
   # Define config parameters.
   # '--oem 1' for using LSTM OCR Engine
-  config = ('-l hin+eng --oem 1 --psm 3')
+  config = ('-l ben --oem 1 --psm 3')
   if option == 1:
     # Read image from disk
     im = cv2.imread(file, cv2.IMREAD_COLOR)
   else :
     im = file
    
-  temp = im
+  '''temp = im
   temp = cv2.bitwise_not(temp)
   temp = cv2.resize(temp, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
   thresh = 127
   temp = cv2.threshold(temp, thresh, 255, cv2.THRESH_BINARY)[1]
   temp = cv2.threshold(temp, 0, 255, cv2.THRESH_BINARY_INV)[1]
+  con = pytesseract.image_to_data(temp, output_type='data.frame')
+  con = con[con.conf != -1]
+  con = con.groupby(['block_num'])['conf'].mean()
+  text = pytesseract.image_to_string(temp, config=config)'''
+  temp = im
+  temp = cv2.fastNlMeansDenoisingColored(temp,None,20,10,7,21)
+  temp = cv2.fastNlMeansDenoising(temp,None,10,7,21)
+  temp = cv2.bitwise_not(temp)
+  temp = cv2.resize(temp, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+  thresh = 127
+  temp = cv2.threshold(temp, thresh, 255, cv2.THRESH_BINARY)[1]
+  #temp = cv2.threshold(temp, 0, 255, cv2.THRESH_BINARY_INV)[1]
   con = pytesseract.image_to_data(temp, output_type='data.frame')
   con = con[con.conf != -1]
   con = con.groupby(['block_num'])['conf'].mean()
@@ -66,8 +78,10 @@ def ocr(file,option,d):
     #return (text)
   if con[1] > con1[1]:
     text = text
+    print(con[1])
   elif con1[1] >con[1]:
     text = text1    
+    print(con1[1])
   #print(text)
   # Print recognized text
   return(text)
@@ -141,4 +155,4 @@ def fetch_output(op):
 
 #op.close()
 
-#fetch_output(op)
+fetch_output(op)

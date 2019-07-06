@@ -5,7 +5,7 @@ import math
 import pickle
 from os import listdir
 import numpy as np
-from bengali import ocr,fetch_output
+#from bengali import ocr,fetch_output
 
 im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
 
@@ -100,7 +100,7 @@ def decode(scores, geometry, scoreThresh):
     return [detections, confidences]
 
 #cap = ap = cv2.VideoCapture(str(sys.argv[1]))
-op = open('outputs/output.txt',"w+")
+#op = open('outputs/output.txt',"w+")
 
 #frame no
 print("press 1 to quit")
@@ -108,13 +108,15 @@ def detect_text(file):
     no = 109
     cap = ap = cv2.VideoCapture(file)
     while cv2.waitKey(1) < 0:
+        if cap.get(cv2.CAP_PROP_POS_FRAMES) == cap.get(cv2.CAP_PROP_FRAME_COUNT):
+          break
         no+=1
         backup=0
         hasFrame, frame = cap.read()
         
-        if no%110 != 0 :
+        if no%(110*2) != 0 :
           backup =1
-          if (no-10)%110 != 0:
+          if (no-10*2)%(110*2) != 0:
             continue
         
         
@@ -161,6 +163,7 @@ def detect_text(file):
               ticker = ticker_detect(vertices,ticker)
               resp = 1
               continue
+            else :  resp =0
             try:
               array = find_boxes(vertices,array)
             except:
@@ -180,10 +183,10 @@ def detect_text(file):
             #if arg >2:
               #  cv2.imwrite('img/f-'+str(hash(vertices[1][1]))+'.'+str(hash(vertices[1][0]))+'.jpg',cropped)
         ## OCR
-        if  arg >2:
+        '''if  arg >2:
             if str(sys.argv[2]) == 'O':
                 fetch_output(op)
-                op.write('\n')
+                op.write('\n')'''
         # Put efficiency information
         cv2.putText(frame, label, (0, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0))
         # Display the frame
@@ -203,7 +206,7 @@ def detect_text(file):
               boxes = i
               print(boxes)
               cropped = frame[int(boxes[2]):int(boxes[3]),int(boxes[0]-4):int(boxes[1])+4]
-              cv2.imwrite('img/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
+              cv2.imwrite('scene/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
               array ={}
         #cv2.destroyAllWindows()
         cv2.imshow(kWinName,frame)
@@ -212,7 +215,7 @@ def detect_text(file):
     print("Writing")
     print(no)
 
-detect_text('video/2019-01-13_1230_IN_DD-News_Desh_Pradesh.mp4')
+detect_text('video/ben.mp4')
 '''
 for file in listdir("video"):
 

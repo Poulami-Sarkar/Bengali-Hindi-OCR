@@ -16,7 +16,7 @@ def frameno(f):
     return re.search('[1-9]\d*(\.\d+)?',f).group(0)
 
 def get_images():
-    l =listdir('img/')
+    l =listdir('scene/')
     d = dict()
     for i in range(0,len(l)):
         if re.match('^\d+.*.??g',l[i]):
@@ -34,7 +34,7 @@ def get_images():
 
 def fetch_output(op):
     img = get_images()
-    filename ='img/'
+    filename ='scene/'
     no=1
     for lst in img[:]:
         print(lst[0])
@@ -64,4 +64,4 @@ def fetch_output(op):
             op.write('\n')
 op = open("outputs/output.txt","w+")
 fetch_output(op)
-#print(ocr('img/'+'880040.0.410.100.jpg',1,1))
+#print(ocr('scene/'+'880040.0.410.100.jpg',1,1))
