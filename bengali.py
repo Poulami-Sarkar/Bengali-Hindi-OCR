@@ -19,29 +19,31 @@ def ocr(file,option,d):
     im = cv2.imread(file, cv2.IMREAD_COLOR)
   else :
     im = file
-   
-  '''temp = im
-  temp = cv2.bitwise_not(temp)
-  temp = cv2.resize(temp, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
-  thresh = 127
-  temp = cv2.threshold(temp, thresh, 255, cv2.THRESH_BINARY)[1]
-  temp = cv2.threshold(temp, 0, 255, cv2.THRESH_BINARY_INV)[1]
-  con = pytesseract.image_to_data(temp, output_type='data.frame')
-  con = con[con.conf != -1]
-  con = con.groupby(['block_num'])['conf'].mean()
-  text = pytesseract.image_to_string(temp, config=config)'''
-  temp = im
-  temp = cv2.fastNlMeansDenoisingColored(temp,None,20,10,7,21)
-  temp = cv2.fastNlMeansDenoising(temp,None,10,7,21)
-  temp = cv2.bitwise_not(temp)
-  temp = cv2.resize(temp, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
-  thresh = 127
-  temp = cv2.threshold(temp, thresh, 255, cv2.THRESH_BINARY)[1]
-  #temp = cv2.threshold(temp, 0, 255, cv2.THRESH_BINARY_INV)[1]
-  con = pytesseract.image_to_data(temp, output_type='data.frame')
-  con = con[con.conf != -1]
-  con = con.groupby(['block_num'])['conf'].mean()
-  text = pytesseract.image_to_string(temp, config=config)
+  
+  if d == 1:
+    temp = im
+    temp = cv2.bitwise_not(temp)
+    temp = cv2.resize(temp, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+    thresh = 127
+    temp = cv2.threshold(temp, thresh, 255, cv2.THRESH_BINARY)[1]
+    temp = cv2.threshold(temp, 0, 255, cv2.THRESH_BINARY_INV)[1]
+    con = pytesseract.image_to_data(temp, output_type='data.frame')
+    con = con[con.conf != -1]
+    con = con.groupby(['block_num'])['conf'].mean()
+    text = pytesseract.image_to_string(temp, config=config)
+  else:
+    temp = im
+    temp = cv2.fastNlMeansDenoisingColored(temp,None,20,10,7,21)
+    temp = cv2.fastNlMeansDenoising(temp,None,10,7,21)
+    temp = cv2.bitwise_not(temp)
+    temp = cv2.resize(temp, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+    thresh = 127
+    temp = cv2.threshold(temp, thresh, 255, cv2.THRESH_BINARY)[1]
+    #temp = cv2.threshold(temp, 0, 255, cv2.THRESH_BINARY_INV)[1]
+    con = pytesseract.image_to_data(temp, output_type='data.frame')
+    con = con[con.conf != -1]
+    con = con.groupby(['block_num'])['conf'].mean()
+    text = pytesseract.image_to_string(temp, config=config)
 
   temp1 =im
   temp1 = cv2.fastNlMeansDenoisingColored(temp1,None,20,10,7,21)
@@ -55,6 +57,9 @@ def ocr(file,option,d):
   con1 = con1[con1.conf != -1]
   con1 = con1.groupby(['block_num'])['conf'].mean()    
   text1 = pytesseract.image_to_string(temp1, config=config) 
+  print('here',file)
+  print(con1,con)
+  print(text1,text)
   # Run tesseract OCR on image
   f=0
   if con.empty and text != '' and con1.empty and text1 != '':
@@ -62,16 +67,16 @@ def ocr(file,option,d):
     return text
   if con.empty and con1.empty:
     if text1 != '':
+      print(1)
       return text1  
     else: return text
-  elif con1.empty:
+  elif con1.empty and text !='':
     con1 =con
-    temp1 =temp
-    f =1
-  elif con.empty:
+    return text
+  elif con.empty and text1 !='':
     con =con1
-    temp =temp1
- 
+    return text1
+
   if (con[1] <40) and (con1[1]< 40):
     print(file)
     print('low',con1[1], con[1])
@@ -90,12 +95,10 @@ filename = ''
 print("text")
 er = open('outputs/output.txt',"w+")
 op = open('outputs/output.srt',"w+")
-'''file = 'img/tick-594040.0.jpg'
+'''file = 'img/tick-16182.84951618285.jpg'
 text =(ocr(filename+file,1,1))
-if text == '':
-  text = (ocr(filename+file,1,0))
-#op.write(text)'''
-#print(text)
+op.write(text)
+print(text)'''
 
 def writefile(h,m,s,ms,no,f,text):
   op.write(str(no))
@@ -144,7 +147,7 @@ def fetch_output(op):
         writefile(h,m,s,ms,no,f,text)
         no+=1
         op.write('\n')
-        print('try',f,text)
+        #print('try',f,text)
       except Exception as err:
         er.write(f+' '+ str(err))
         print(err)

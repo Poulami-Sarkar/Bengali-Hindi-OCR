@@ -51,6 +51,26 @@ def ticker_detect(vertices,ticker):
     ticker[1] = vertices[2][0]
   return ticker
        
+def color_detect_ticker(frame):
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV) 
+    blue_lower=np.array([99,115,150],np.uint8)
+    blue_upper=np.array([110,255,255],np.uint8) 
+    red_lower=np.array([136,87,111],np.uint8)
+    red_upper=np.array([180,255,255],np.uint8)
+
+    blue = cv2.inRange(hsv, blue_lower, blue_upper) 
+    red = cv2.inRange(hsv, red_lower, red_upper) 
+
+    kernal = np.ones((5 ,5), "uint8")
+    blue=cv2.dilate(blue,kernal)
+    red=cv2.dilate(red,kernal)
+    resb=cv2.bitwise_and(frame, frame, mask = blue)
+    resr=cv2.bitwise_and(frame, frame, mask = red)
+
+    if (np.count_nonzero(resb)>1500 and np.count_nonzero(resr)>9000):
+      return 1
+    else :
+      return 0
 
 def decode(scores, geometry, scoreThresh):
     detections = []
@@ -114,9 +134,9 @@ def detect_text(file):
         backup=0
         hasFrame, frame = cap.read()
         
-        if no%(110*2) != 0 :
+        if no%(110) != 0 :
           backup =1
-          if (no-10*2)%(110*2) != 0:
+          if (no-10)%(110) != 0:
             continue
         
         
@@ -189,10 +209,15 @@ def detect_text(file):
                 op.write('\n')'''
         # Put efficiency information
         cv2.putText(frame, label, (0, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0))
-        # Display the frame
-        frame = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+        
         #cropped = frame[int(453):int(485),int(1):int(500)]
         cropped = frame[int(ticker[2]):int(ticker[3]),int(1):int(500)]
+        if color_detect_ticker(cropped):
+          cropped = frame[int(ticker[2]):int(ticker[3]),int(110):int(ticker[1])]
+        
+        # Convert to grayscale
+        cropped = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+        frame = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
         print(no)
         print(ticker)
         if backup == 0:
@@ -210,12 +235,11 @@ def detect_text(file):
               array ={}
         #cv2.destroyAllWindows()
         cv2.imshow(kWinName,frame)
-    op.close()   
     print("done")
     print("Writing")
     print(no)
 
-detect_text('video/ben.mp4')
+detect_text('video/2019-01-04_1300_IN_DD-News_Nationwide.mp4')
 '''
 for file in listdir("video"):
 
