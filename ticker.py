@@ -52,6 +52,8 @@ def ticker_detect(vertices,ticker):
   return ticker
        
 def color_detect_ticker(frame):
+    if frame.size == 0:
+      return frame
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV) 
     blue_lower=np.array([99,115,150],np.uint8)
     blue_upper=np.array([110,255,255],np.uint8) 
@@ -119,10 +121,6 @@ def decode(scores, geometry, scoreThresh):
     # Return detections and confidences
     return [detections, confidences]
 
-#cap = ap = cv2.VideoCapture(str(sys.argv[1]))
-#op = open('outputs/output.txt',"w+")
-
-#frame no
 print("press 1 to quit")
 def detect_text(file):
     no = 109
@@ -184,11 +182,13 @@ def detect_text(file):
               resp = 1
               continue
             else :  resp =0
+            array = find_boxes(vertices,array)
+            '''
             try:
               array = find_boxes(vertices,array)
             except:
               array ={}
-              array = find_boxes(vertices,array)
+              array = find_boxes(vertices,array)'''
             
             for j in range(4):
                 p1 = (vertices[j][0], vertices[j][1])
@@ -216,7 +216,7 @@ def detect_text(file):
           cropped = frame[int(ticker[2]):int(ticker[3]),int(110):int(ticker[1])]
         
         # Convert to grayscale
-        cropped = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+        if cropped.size: cropped = cv2.cvtColor(cropped,cv2.COLOR_BGR2GRAY)
         frame = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
         print(no)
         print(ticker)

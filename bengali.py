@@ -10,10 +10,12 @@ from os.path import isfile, join
 import re
 import pandas as pd
 
-def ocr(file,option,d): 
+
+lang = 'hin+eng'
+def ocr(file,lang,option,d): 
   # Define config parameters.
   # '--oem 1' for using LSTM OCR Engine
-  config = ('-l ben --oem 1 --psm 3')
+  config = ('-l '+lang+' --oem 1 --psm 3')
   if option == 1:
     # Read image from disk
     im = cv2.imread(file, cv2.IMREAD_COLOR)
@@ -57,10 +59,8 @@ def ocr(file,option,d):
   con1 = con1[con1.conf != -1]
   con1 = con1.groupby(['block_num'])['conf'].mean()    
   text1 = pytesseract.image_to_string(temp1, config=config) 
-  print('here',file)
-  print(con1,con)
-  print(text1,text)
-  # Run tesseract OCR on image
+
+  # Test conditions
   f=0
   if con.empty and text != '' and con1.empty and text1 != '':
     print("no conf ",file,text,text1)
@@ -96,7 +96,7 @@ print("text")
 er = open('outputs/output.txt',"w+")
 op = open('outputs/output.srt',"w+")
 '''file = 'img/tick-16182.84951618285.jpg'
-text =(ocr(filename+file,1,1))
+text =(ocr(filename+file,lang,1,1))
 op.write(text)
 print(text)'''
 
@@ -128,7 +128,7 @@ def fetch_output(op):
     h,m=divmod(m,60)
     f = 'tick-'+str(f)+'.jpg'
     try:
-      text = ocr(filename+f,1,1)
+      text = ocr(filename+f,lang,1,1)
       if "".join(text.split()) == '':
         raise Exception('blank')
       text = text.split(' ')
@@ -143,7 +143,7 @@ def fetch_output(op):
       no+=1
     except:
       try:
-        text =ocr('backup/'+f,1,1)
+        text =ocr('backup/'+f,lang,1,1)
         writefile(h,m,s,ms,no,f,text)
         no+=1
         op.write('\n')
@@ -158,4 +158,4 @@ def fetch_output(op):
 
 #op.close()
 
-fetch_output(op)
+#fetch_output(op)
