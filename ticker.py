@@ -30,6 +30,10 @@ def find_boxes(vertices,array):
   y = hash(vertices[1][1])
   if y in array:
     array[y] = ticker_detect(vertices,array[y])
+  elif y-10 in array:
+    array[y-10] = ticker_detect(vertices,array[y-10])
+  elif y+10 in array:
+        array[y+10] = ticker_detect(vertices,array[y+10])    
   else:
     array[y] = [vertices[1][0],vertices[3][0],vertices[1][1],vertices[3][1]]
   return array
@@ -41,7 +45,7 @@ def ticker_detect(vertices,ticker):
   if ticker[3] < vertices[0][1]:
     ticker[3] = vertices[0][1]
   if ticker[0] > vertices[0][0]:
-    if ticker[1]+150<vertices[0][0]:
+    if ticker[1]+100<vertices[0][0]:
       return ticker
     if vertices[0][0] < 0: 
       ticker[0] = 0
@@ -243,7 +247,7 @@ def detect_text(file):
     print("Writing")
     print(no)
 
-detect_text('video/2019-01-05_1300_IN_DD-News_Nationwide.mp4')
+detect_text('video/2019-01-06_1300_IN_DD-News_Nationwide.mp4')
 '''
 for file in listdir("video"):
 
