@@ -103,7 +103,10 @@ print(text)'''
 def writefile(h,m,s,ms,no,f,text):
   op.write(str(no))
   op.write('\n')
-  op.write(str(h)+':'+str(m)+':'+str(s)+','+str(ms)+' --> '+str(h)+':'+str(m)+':'+str(s+2)+','+str(ms+200))
+  op.write(str("%02d" %(h))+':'+str("%02d" %(m))+':'+str("%02d" %(s))+','+str("%03d" %(ms))+' --> ')
+  s,ms = (s+2,ms+200) if ms+200<1000 else (s+3,ms+200-1000)
+  m,s = (m+1,s-60) if s>=60 else (m,s)
+  op.write(str("%02d" %(h))+':'+str("%02d" %(m))+':'+str("%02d" %(s))+','+str("%02d" %(ms)))
   op.write('\n')
   op.write(str(text).replace('\n',' '))
   op.write('\n\n')
@@ -158,4 +161,4 @@ def fetch_output(op):
 
 #op.close()
 
-#fetch_output(op)
+fetch_output(op)

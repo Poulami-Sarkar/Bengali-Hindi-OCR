@@ -109,7 +109,7 @@ def detect_text(file):
             snip = 0
             # get 4 corners of the rotated rect
             vertices = cv2.boxPoints(boxes[i[0]])
-            #rint(p1," ",p2)
+            #print(p1," ",p2)
             # scale the bounding box coordinates based on the respective ratios
             for j in range(4):
                 vertices[j][0] *= rW

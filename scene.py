@@ -62,7 +62,7 @@ def fetch_output(op):
                         print(str(lst[0])+'.'+str(i)+'0.jpg')
             no+=1
             op.write('\n')
-op = open("outputs/2019-01-04_1300_IN_DD-News_Nationwide.txt","w+")
+op = open("outputs/output.txt","w+")
 lang = 'hin+eng'
 fetch_output(op)
 

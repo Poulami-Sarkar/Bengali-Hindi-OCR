@@ -41,7 +41,7 @@ def ticker_detect(vertices,ticker):
   if ticker[3] < vertices[0][1]:
     ticker[3] = vertices[0][1]
   if ticker[0] > vertices[0][0]:
-    if ticker[1]+100<vertices[0][0]:
+    if ticker[1]+150<vertices[0][0]:
       return ticker
     if vertices[0][0] < 0: 
       ticker[0] = 0
@@ -213,7 +213,11 @@ def detect_text(file):
         #cropped = frame[int(453):int(485),int(1):int(500)]
         cropped = frame[int(ticker[2]):int(ticker[3]),int(1):int(500)]
         if color_detect_ticker(cropped):
-          cropped = frame[int(ticker[2]):int(ticker[3]),int(110):int(ticker[1])]
+          array[int(ticker[2])] = [110,600,ticker[2],ticker[3]]
+          '''cropped = frame[int(ticker[2]):int(ticker[3]),int(110):int(600)]
+          cropped = cv2.cvtColor(cropped,cv2.COLOR_BGR2GRAY)
+          cv2.imwrite('scene/'+str(int(cap.get(cv2.CAP_PROP_POS_MSEC)))+'.'+str(hash(ticker[2]))+'.'+str(110)+'.jpg',cropped)'''
+          cropped = np.empty(0)
         
         # Convert to grayscale
         if cropped.size: cropped = cv2.cvtColor(cropped,cv2.COLOR_BGR2GRAY)
@@ -239,7 +243,7 @@ def detect_text(file):
     print("Writing")
     print(no)
 
-detect_text('video/2019-01-04_1300_IN_DD-News_Nationwide.mp4')
+detect_text('video/2019-01-05_1300_IN_DD-News_Nationwide.mp4')
 '''
 for file in listdir("video"):
 
