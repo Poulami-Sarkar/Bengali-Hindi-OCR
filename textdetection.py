@@ -123,7 +123,7 @@ def detect_text(file):
             cropped = frame[math.floor(vertices[1][1])-4:math.ceil(vertices[3][1]+4),math.floor(vertices[1][0])-4:math.ceil(vertices[3][0])+4]
             if arg >2:
                 cv2.imwrite('img/f-'+str(no)+'-'+str(math.floor(vertices[1][1]))+'.'+str(math.floor(vertices[1][0]))+'.jpg',cropped)
-        ## OCR
+        # OCR
         if  arg >2:
             if str(sys.argv[2]) == 'O':
                 fetch_output(op)
