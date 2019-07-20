@@ -135,10 +135,11 @@ def detect_text(file):
         no+=1
         backup=0
         hasFrame, frame = cap.read()
-        
+        copy =frame
         if no%(110) != 0 :
           backup =1
           if (no-10)%(110) != 0:
+            #cv2.imshow(kWinName,frame)
             continue
         
         
@@ -226,28 +227,35 @@ def detect_text(file):
         # Convert to grayscale
         if cropped.size: cropped = cv2.cvtColor(cropped,cv2.COLOR_BGR2GRAY)
         frame = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-        print(no)
-        print(ticker)
+        #print(no)
+        #print(ticker)
         if backup == 0:
           cv2.imwrite('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg',cropped)
           prev = cap.get(cv2.CAP_PROP_POS_MSEC)
+          '''try:
+            text = ocr('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg','hin+eng',1,1)
+          except:
+            text = ""        
+          print(text)'''
+          if len(array)>1:
+              for i in array.values():
+                boxes = i
+                #print(boxes)
+                #print(prev)
+                #print(boxes)
+                cropped = frame[int(boxes[2]):int(boxes[3]),int(boxes[0]-4):int(boxes[1])+4]
+                cv2.imwrite('scene/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
+                array ={}
         else:
           cv2.imwrite('backup/tick-'+str(prev)+'.jpg',cropped)
-          print(array)
-          if len(array)>1:
-            for i in array.values():
-              boxes = i
-              print(boxes)
-              cropped = frame[int(boxes[2]):int(boxes[3]),int(boxes[0]-4):int(boxes[1])+4]
-              cv2.imwrite('scene/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
-              array ={}
+          #print(array)
         #cv2.destroyAllWindows()
-        cv2.imshow(kWinName,frame)
+        cv2.imshow(kWinName,copy)
     print("done")
     print("Writing")
     print(no)
 
-detect_text('video/2019-01-06_1300_IN_DD-News_Nationwide.mp4')
+detect_text('video/output.mp4')
 '''
 for file in listdir("video"):
 

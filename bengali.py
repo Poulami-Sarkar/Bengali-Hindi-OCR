@@ -11,7 +11,7 @@ import re
 import pandas as pd
 
 
-lang = 'hin+eng'
+lang = 'ben'
 def ocr(file,lang,option,d): 
   # Define config parameters.
   # '--oem 1' for using LSTM OCR Engine
@@ -48,7 +48,8 @@ def ocr(file,lang,option,d):
     text = pytesseract.image_to_string(temp, config=config)
 
   temp1 =im
-  temp1 = cv2.fastNlMeansDenoisingColored(temp1,None,20,10,7,21)
+  #Comment for Bengali 
+  #temp1 = cv2.fastNlMeansDenoisingColored(temp1,None,20,10,7,21)
   temp1 = cv2.fastNlMeansDenoising(temp1,None,10,7,21)
   temp1 = cv2.bitwise_not(temp1)
   temp1 = cv2.resize(temp1, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
@@ -63,11 +64,11 @@ def ocr(file,lang,option,d):
   # Test conditions
   f=0
   if con.empty and text != '' and con1.empty and text1 != '':
-    print("no conf ",file,text,text1)
+    #print("no conf ",file,text,text1)
     return text
   if con.empty and con1.empty:
     if text1 != '':
-      print(1)
+      #print(1)
       return text1  
     else: return text
   elif con1.empty and text !='':
@@ -77,16 +78,16 @@ def ocr(file,lang,option,d):
     con =con1
     return text1
 
-  if (con[1] <40) and (con1[1]< 40):
-    print(file)
-    print('low',con1[1], con[1])
+  #if (con[1] <40) and (con1[1]< 40):
+    #print(file)
+    #print('low',con1[1], con[1])
     #return (text)
   if con[1] > con1[1]:
     text = text
-    print(con[1])
+    #print(con[1])
   elif con1[1] >con[1]:
     text = text1    
-    print(con1[1])
+    #print(con1[1])
   #print(text)
   # Print recognized text
   return(text)
@@ -94,7 +95,7 @@ def ocr(file,lang,option,d):
 filename = ''
 print("text")
 er = open('outputs/output.txt',"w+")
-op = open('outputs/output.srt',"w+")
+op = open('outputs/output1.srt',"w+")
 '''file = 'img/tick-16182.84951618285.jpg'
 text =(ocr(filename+file,lang,1,1))
 op.write(text)
@@ -108,7 +109,9 @@ def writefile(h,m,s,ms,no,f,text):
   m,s = (m+1,s-60) if s>=60 else (m,s)
   op.write(str("%02d" %(h))+':'+str("%02d" %(m))+':'+str("%02d" %(s))+','+str("%02d" %(ms)))
   op.write('\n')
-  op.write(str(text).replace('\n',' '))
+  if len(text.split(' '))>2:
+    text =text.split(' ')[1:-1]
+  op.write(str(' '.join(text)).replace('\n',' '))
   op.write('\n\n')
 
 def frameno(f):
@@ -161,4 +164,4 @@ def fetch_output(op):
 
 #op.close()
 
-fetch_output(op)
+#fetch_output(op)

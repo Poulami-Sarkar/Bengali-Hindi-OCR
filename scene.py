@@ -63,7 +63,7 @@ def fetch_output(op):
             no+=1
             op.write('\n')
 op = open("outputs/output.txt","w+")
-lang = 'hin+eng'
+lang = 'ben'
 fetch_output(op)
 
 #print(ocr('scene/'+'880040.0.410.100.jpg',lang,1,0))
