@@ -143,7 +143,7 @@ def detect_text(file):
         
         
         arg =len(sys.argv)
-        # Read frame 
+        ## Read frame 
         if not hasFrame:
             cv2.waitKey()
             break
