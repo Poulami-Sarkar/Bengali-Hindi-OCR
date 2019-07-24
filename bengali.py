@@ -11,7 +11,7 @@ import re
 import pandas as pd
 
 
-lang = 'ben'
+lang = 'hin+eng'
 def ocr(file,lang,option,d): 
   # Define config parameters.
   # '--oem 1' for using LSTM OCR Engine
@@ -49,7 +49,7 @@ def ocr(file,lang,option,d):
 
   temp1 =im
   #Comment for Bengali 
-  #temp1 = cv2.fastNlMeansDenoisingColored(temp1,None,20,10,7,21)
+  temp1 = cv2.fastNlMeansDenoisingColored(temp1,None,20,10,7,21)
   temp1 = cv2.fastNlMeansDenoising(temp1,None,10,7,21)
   temp1 = cv2.bitwise_not(temp1)
   temp1 = cv2.resize(temp1, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
@@ -65,18 +65,18 @@ def ocr(file,lang,option,d):
   f=0
   if con.empty and text != '' and con1.empty and text1 != '':
     #print("no conf ",file,text,text1)
-    return text
+    return (text,con)
   if con.empty and con1.empty:
     if text1 != '':
       #print(1)
-      return text1  
+      return (text1,con1)  
     else: return text
   elif con1.empty and text !='':
     con1 =con
-    return text
+    return (text,con)
   elif con.empty and text1 !='':
     con =con1
-    return text1
+    return (text1,con1)
 
   #if (con[1] <40) and (con1[1]< 40):
     #print(file)
@@ -86,15 +86,16 @@ def ocr(file,lang,option,d):
     text = text
     #print(con[1])
   elif con1[1] >con[1]:
-    text = text1    
+    text = text1
+    con = con1    
     #print(con1[1])
   #print(text)
   # Print recognized text
-  return(text)
+  return(text,con)
 
 filename = ''
 print("text")
-er = open('outputs/output.txt',"w+")
+er = open('outputs/output1.txt',"w+")
 op = open('outputs/output1.srt',"w+")
 '''file = 'img/tick-16182.84951618285.jpg'
 text =(ocr(filename+file,lang,1,1))
@@ -109,9 +110,10 @@ def writefile(h,m,s,ms,no,f,text):
   m,s = (m+1,s-60) if s>=60 else (m,s)
   op.write(str("%02d" %(h))+':'+str("%02d" %(m))+':'+str("%02d" %(s))+','+str("%02d" %(ms)))
   op.write('\n')
-  if len(text.split(' '))>2:
+  '''if len(text.split(' '))>2:
     text =text.split(' ')[1:-1]
-  op.write(str(' '.join(text)).replace('\n',' '))
+  op.write(str(' '.join(text)).replace('\n',' '))'''
+  op.write(str(text).replace('\n',' '))
   op.write('\n\n')
 
 def frameno(f):
@@ -128,13 +130,13 @@ def fetch_output(op):
   #l = list(map(lambda x:'tick-'+str(x)+'.jpg',sorted(l)))
   prev='p'
   no = 1
-  for f in l[:]:
+  for f in l[:3]:
     s,ms=divmod(f,1000)
     m,s=divmod(s,60)
     h,m=divmod(m,60)
     f = 'tick-'+str(f)+'.jpg'
     try:
-      text = ocr(filename+f,lang,1,1)
+      text,con = ocr(filename+f,lang,1,1)
       if "".join(text.split()) == '':
         raise Exception('blank')
       text = text.split(' ')
@@ -149,7 +151,7 @@ def fetch_output(op):
       no+=1
     except:
       try:
-        text =ocr('backup/'+f,lang,1,1)
+        text,con =ocr('backup/'+f,lang,1,1)
         writefile(h,m,s,ms,no,f,text)
         no+=1
         op.write('\n')
@@ -164,4 +166,4 @@ def fetch_output(op):
 
 #op.close()
 
-#fetch_output(op)
+fetch_output(op)

@@ -1,11 +1,13 @@
 import pytesseract
+from datetime import datetime,timedelta
 import cv2
 import sys
 import math
+import re
 import pickle
 from os import listdir
 import numpy as np
-#from bengali import ocr,fetch_output
+from bengali import ocr,fetch_output
 
 im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
 
@@ -22,6 +24,56 @@ kWinName = "Text Detector running"
 outNames = []
 outNames.append("feature_fusion/Conv_7/Sigmoid")
 outNames.append("feature_fusion/concat_3")
+
+textlist =[]
+scenetext = dict()
+op =open('outputs/output1.txt','w+')
+
+def scene(img,ms,no,boxes):
+  try:
+      lang = 'hin+eng'
+      text,con = ocr(img,lang,1,0) 
+      text = text.replace('\n',' ').replace('\r',' ')
+  except Exception as err:
+      print(err)
+      return
+  if text != '':
+      if len(re.findall('[a-z0-9]',text.lower())) > (len(re.findall('[\u0900-\u097Fa-zA-Z0-9]',text))*0.5) and (con.empty or con[1] <65):
+          print('skip',len(re.findall('[a-z0-9]',text.lower())) > (len(re.findall('[\u0900-\u097Fa-zA-Z0-9]',text))*0.5) and con.empty,text)
+      else:
+          text_keychars = re.findall('[\u0900-\u097Fa-zA-Z0-9]',text)
+          text_keychars = ''.join(text_keychars)
+          s,ms=divmod(ms,1000)
+          m,s=divmod(s,60)
+          h,m=divmod(m,60)
+          start = "2019-01-04 "+str("%02d:" %(h))+str("%02d:" %(m))+str("%02d." %(s))+str("%03d" %(ms))
+          start = datetime.strptime(start, "%Y-%m-%d %H:%M:%S.%f")
+          end = start + timedelta(milliseconds = 2200)
+
+          if text_keychars in scenetext:
+            print(no,scenetext[text_keychars][-1][7] + 110)
+            if(scenetext[text_keychars][-1][7] + 110 == no):
+              scenetext[text_keychars][-1][7] = no
+              scenetext[text_keychars][-1][1] = end
+            else:
+              textlist.append((text_keychars,len(scenetext[text_keychars])))
+              scenetext[text_keychars].append([start,end,boxes[0],boxes[2],(boxes[1]-boxes[0]),(boxes[2]-boxes[3]),no,no,text])
+              print('app')
+              print(scenetext[text_keychars])
+          else:
+            textlist.append((text_keychars,0))
+            scenetext[text_keychars] = [[start,end,boxes[0],boxes[2],(boxes[1]-boxes[0]),(boxes[3]-boxes[2]),no,no,text]]
+          print(scenetext)            
+
+def write(op):  
+  for i,j in textlist:
+    d = scenetext[i][j]
+    st = ''.join(re.findall('\d',str(d[0])[:-3])) 
+    en = ''.join(re.findall('\d',str(d[1])[:-3]))
+    op.write(st[:-3]+'.'+str("%.3d" %int(st[-3:])) +'|'+en[:-3]+'.'+str("%.3d" %int(en[-3:]))+'|OCR1|'+str("%06d" %d[6])+'|'+\
+      str("%03d" %int(d[2]))+' '+str("%03d" %int(d[3]))+' '+str("%03d" %int(d[4]))+' '+str("%03d" %int(d[5]))+'|')
+    op.write(d[-1]+'\n')
+
 
 def hash(vertex):
   return int(vertex/10)*10
@@ -126,9 +178,11 @@ def decode(scores, geometry, scoreThresh):
     return [detections, confidences]
 
 print("press 1 to quit")
+
 def detect_text(file):
     no = 109
     cap = ap = cv2.VideoCapture(file)
+    
     while cv2.waitKey(1) < 0:
         if cap.get(cv2.CAP_PROP_POS_FRAMES) == cap.get(cv2.CAP_PROP_FRAME_COUNT):
           break
@@ -219,9 +273,6 @@ def detect_text(file):
         cropped = frame[int(ticker[2]):int(ticker[3]),int(1):int(500)]
         if color_detect_ticker(cropped):
           array[int(ticker[2])] = [110,600,ticker[2],ticker[3]]
-          '''cropped = frame[int(ticker[2]):int(ticker[3]),int(110):int(600)]
-          cropped = cv2.cvtColor(cropped,cv2.COLOR_BGR2GRAY)
-          cv2.imwrite('scene/'+str(int(cap.get(cv2.CAP_PROP_POS_MSEC)))+'.'+str(hash(ticker[2]))+'.'+str(110)+'.jpg',cropped)'''
           cropped = np.empty(0)
         
         # Convert to grayscale
@@ -240,10 +291,9 @@ def detect_text(file):
           if len(array)>1:
               for i in array.values():
                 boxes = i
-                #print(boxes)
-                #print(prev)
-                #print(boxes)
                 cropped = frame[int(boxes[2]):int(boxes[3]),int(boxes[0]-4):int(boxes[1])+4]
+                cv2.imwrite('scene/img.jpg',cropped)
+                scene('scene/img.jpg',prev,no,boxes)
                 cv2.imwrite('scene/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
                 array ={}
         else:
@@ -251,11 +301,12 @@ def detect_text(file):
           #print(array)
         #cv2.destroyAllWindows()
         cv2.imshow(kWinName,copy)
+    write(op)
     print("done")
     print("Writing")
     print(no)
 
-detect_text('video/output.mp4')
+detect_text('video/output1.mp4')
 '''
 for file in listdir("video"):
 
