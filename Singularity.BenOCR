@@ -16,9 +16,9 @@ From:ubuntu:latest
         apt install  -y tesseract-ocr
         apt install -y libtesseract-dev libsm-dev
         pip3 install pytesseract opencv-python numpy
-        cp hin.traineddata ben.traineddata /usr/share/tesseract-ocr/4.00/tessdata/
 
 %runscript
+        cp hin.traineddata ben.traineddata /usr/share/tesseract-ocr/4.00/tessdata/
         echo "The code takes one input input.png and returns the OCR output in the file outputs/output.txt" 
         echo "Running text detection. The output can be found in the file outputs/out.jpg"
         echo "Running OCR. Output in file outputs/output.txt"
