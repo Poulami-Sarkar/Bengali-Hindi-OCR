@@ -165,4 +165,4 @@ def fetch_output(op):
           #os.remove(filename+f)'''
 
 #op.close()
-#fetch_output(op)
+fetch_output(op)

@@ -1,0 +1,11 @@
+TOP|20190113033001|2019-01-13_0330_IN_DD-News_Samachar
+COL|Communication Studies Archive, UCLA
+UID|87588ed4-3a42-11e9-b7f9-fff2ea07e507
+DUR|00:29:54
+VID|720x576|1024x576
+SRC|Kolkata, India
+TTL|Samachar
+CMT|Morning news in Hindi
+CC1|HIN
+LBT|2019-01-13 09:00:01 Asia/India
+END|20190113035955|2019-01-13_0330_IN_DD-News_Samachar

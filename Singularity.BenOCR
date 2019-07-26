@@ -10,18 +10,20 @@ From:ubuntu:latest
         export LANG=en_US.UTF-8
         export LC_ALL=en_US.UTF-8
 
+%setup
+        cp hin.traineddata ben.traineddata {SINGULARITY_ROOTFS}/usr/share/tesseract-ocr/4.00/tessdata/dan.traineddata
+
 %post
         apt update
         apt install -y python3-pip build-essential libssl-dev libffi-dev python3-dev
         apt install  -y tesseract-ocr
         apt install -y libtesseract-dev libsm-dev
         pip3 install pytesseract opencv-python numpy
-        
+        cp
 
 %runscript
         echo "The code takes one input input.png and returns the OCR output in the file outputs/output.txt" 
         echo "Running text detection. The output can be found in the file outputs/out.jpg"
-        python3 textdetection.py 2019-01-04_1320_IN_DD-News_Swach_Bharat.mp4
         echo "Running OCR. Output in file outputs/output.txt"
         #python3 bengali.py
 
