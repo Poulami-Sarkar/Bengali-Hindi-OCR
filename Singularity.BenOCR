@@ -10,16 +10,13 @@ From:ubuntu:latest
         export LANG=en_US.UTF-8
         export LC_ALL=en_US.UTF-8
 
-%setup
-        cp hin.traineddata ben.traineddata /usr/share/tesseract-ocr/4.00/tessdata/
-
 %post
         apt update
         apt install -y python3-pip build-essential libssl-dev libffi-dev python3-dev
         apt install  -y tesseract-ocr
         apt install -y libtesseract-dev libsm-dev
         pip3 install pytesseract opencv-python numpy
-        cp
+        cp hin.traineddata ben.traineddata /usr/share/tesseract-ocr/4.00/tessdata/
 
 %runscript
         echo "The code takes one input input.png and returns the OCR output in the file outputs/output.txt" 
