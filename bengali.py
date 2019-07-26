@@ -130,7 +130,7 @@ def fetch_output(op):
   #l = list(map(lambda x:'tick-'+str(x)+'.jpg',sorted(l)))
   prev='p'
   no = 1
-  for f in l[:3]:
+  for f in l[:]:
     s,ms=divmod(f,1000)
     m,s=divmod(s,60)
     h,m=divmod(m,60)
@@ -165,5 +165,4 @@ def fetch_output(op):
           #os.remove(filename+f)'''
 
 #op.close()
-
-fetch_output(op)
+#fetch_output(op)

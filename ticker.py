@@ -28,6 +28,13 @@ outNames.append("feature_fusion/concat_3")
 textlist =[]
 scenetext = dict()
 op =open('outputs/output1.txt','w+')
+video ="outputs/2019-01-13_0330_IN_DD-News_Samachar.txt"
+f1 = open(video,'r')
+text = f1.read()
+ts = re.search('\d{4}-\d{2}-\d{2} \d{2}:\d{2}([:]\d+)?',text).group(0)
+base = (datetime.strptime(ts,"%Y-%m-%d %H:%M:%S")) - timedelta(hours=5,minutes=30)
+
+
 
 def scene(img,ms,no,boxes):
   try:
@@ -43,27 +50,23 @@ def scene(img,ms,no,boxes):
       else:
           text_keychars = re.findall('[\u0900-\u097Fa-zA-Z0-9]',text)
           text_keychars = ''.join(text_keychars)
-          s,ms=divmod(ms,1000)
-          m,s=divmod(s,60)
-          h,m=divmod(m,60)
-          start = "2019-01-04 "+str("%02d:" %(h))+str("%02d:" %(m))+str("%02d." %(s))+str("%03d" %(ms))
-          start = datetime.strptime(start, "%Y-%m-%d %H:%M:%S.%f")
+          start =base+timedelta(milliseconds=ms)
           end = start + timedelta(milliseconds = 2200)
 
           if text_keychars in scenetext:
             print(no,scenetext[text_keychars][-1][7] + 110)
-            if(scenetext[text_keychars][-1][7] + 110 == no):
+            if(abs(scenetext[text_keychars][-1][7] - no) <= 330):
               scenetext[text_keychars][-1][7] = no
               scenetext[text_keychars][-1][1] = end
             else:
               textlist.append((text_keychars,len(scenetext[text_keychars])))
               scenetext[text_keychars].append([start,end,boxes[0],boxes[2],(boxes[1]-boxes[0]),(boxes[2]-boxes[3]),no,no,text])
               print('app')
-              print(scenetext[text_keychars])
+              #print(scenetext[text_keychars])
           else:
             textlist.append((text_keychars,0))
             scenetext[text_keychars] = [[start,end,boxes[0],boxes[2],(boxes[1]-boxes[0]),(boxes[3]-boxes[2]),no,no,text]]
-          print(scenetext)            
+          #print(scenetext)            
 
 def write(op):  
   for i,j in textlist:
@@ -125,7 +128,7 @@ def color_detect_ticker(frame):
     resb=cv2.bitwise_and(frame, frame, mask = blue)
     resr=cv2.bitwise_and(frame, frame, mask = red)
 
-    if (np.count_nonzero(resb)>1500 and np.count_nonzero(resr)>9000):
+    if (np.count_nonzero(resb)>1000 and np.count_nonzero(resr)>5000):
       return 1
     else :
       return 0
@@ -248,12 +251,6 @@ def detect_text(file):
             except:
               array ={}
               array = find_boxes(vertices,array)'''
-            
-            for j in range(4):
-                p1 = (vertices[j][0], vertices[j][1])
-                p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
-                if arg <2:
-                  cv2.line(frame, p1, p2, (0, 255, 0), 2);
             # if ticker is detected skip
             if resp == 1:
                 continue            
@@ -276,12 +273,13 @@ def detect_text(file):
           cropped = np.empty(0)
         
         # Convert to grayscale
-        if cropped.size: cropped = cv2.cvtColor(cropped,cv2.COLOR_BGR2GRAY)
         frame = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
         #print(no)
         #print(ticker)
         if backup == 0:
-          cv2.imwrite('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg',cropped)
+          if cropped.size:
+            cropped = cv2.cvtColor(cropped,cv2.COLOR_BGR2GRAY)
+            cv2.imwrite('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg',cropped)
           prev = cap.get(cv2.CAP_PROP_POS_MSEC)
           '''try:
             text = ocr('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg','hin+eng',1,1)
@@ -298,15 +296,19 @@ def detect_text(file):
                 array ={}
         else:
           cv2.imwrite('backup/tick-'+str(prev)+'.jpg',cropped)
-          #print(array)
-        #cv2.destroyAllWindows()
+
+        for j in range(4):
+          p1 = (vertices[j][0], vertices[j][1])
+          p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
+          if arg <2:
+            cv2.line(copy, p1, p2, (0, 255, 0), 2);
         cv2.imshow(kWinName,copy)
     write(op)
     print("done")
     print("Writing")
     print(no)
 
-detect_text('video/output1.mp4')
+detect_text('video/2019-01-13_0330_IN_DD-News_Samachar.mp4')
 '''
 for file in listdir("video"):
 
