@@ -17,6 +17,7 @@ From:ubuntu:latest
         apt install -y libtesseract-dev libsm-dev
         pip3 install pytesseract opencv-python numpy
         wget -O /usr/share/tesseract-ocr/4.00/tessdata/hin.traineddata https://github.com/tesseract-ocr/tessdata/raw/master/hin.traineddata
+        ls -l /usr/share/tesseract-ocr/4.00/tessdata/
 
 %runscript
         #cp hin.traineddata ben.traineddata /usr/share/tesseract-ocr/4.00/tessdata/
