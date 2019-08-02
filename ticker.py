@@ -7,8 +7,8 @@ import re
 import pickle
 from os import listdir
 import numpy as np
-from bengali import ocr,fetch_output
-from scene import ocr_ticker
+#from bengali import ocr,fetch_output
+from scene import ocr_ticker,ocr
 
 im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
 
@@ -301,13 +301,13 @@ def detect_text(file):
           p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
           if arg <2:
             cv2.line(copy, p1, p2, (0, 255, 0), 2);
-        cv2.imshow(kWinName,copy)
+        #cv2.imshow(kWinName,copy)
     write_scenetext(op)
     print("done")
     print("Writing")
     print(no)
 
-detect_text('video/2019-01-13_0330_IN_DD-News_Samachar.mp4')
+detect_text('/mnt/rds/redhen/gallina/tv/2019/2019-01/2019-01-13/2019-01-13_0330_IN_DD-News_Samachar.mp4')
 '''
 for file in listdir("video"):
 
