@@ -8,6 +8,7 @@ import pickle
 from os import listdir
 import numpy as np
 from bengali import ocr,fetch_output
+from scene import ocr_ticker
 
 im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
 
@@ -34,8 +35,6 @@ text = f1.read()
 ts = re.search('\d{4}-\d{2}-\d{2} \d{2}:\d{2}([:]\d+)?',text).group(0)
 base = (datetime.strptime(ts,"%Y-%m-%d %H:%M:%S")) - timedelta(hours=5,minutes=30)
 
-
-
 def scene(img,ms,no,boxes):
   try:
       lang = 'hin+eng'
@@ -60,7 +59,7 @@ def scene(img,ms,no,boxes):
               scenetext[text_keychars][-1][1] = end
             else:
               textlist.append((text_keychars,len(scenetext[text_keychars])))
-              scenetext[text_keychars].append([start,end,boxes[0],boxes[2],(boxes[1]-boxes[0]),(boxes[2]-boxes[3]),no,no,text])
+              scenetext[text_keychars].append([start,end,boxes[0],boxes[2],abs(boxes[1]-boxes[0]),abs(boxes[3]-boxes[2]),no,no,text])
               print('app')
               #print(scenetext[text_keychars])
           else:
@@ -68,12 +67,12 @@ def scene(img,ms,no,boxes):
             scenetext[text_keychars] = [[start,end,boxes[0],boxes[2],(boxes[1]-boxes[0]),(boxes[3]-boxes[2]),no,no,text]]
           #print(scenetext)            
 
-def write(op):  
+def write_scenetext(op):  
   for i,j in textlist:
     d = scenetext[i][j]
     st = ''.join(re.findall('\d',str(d[0])[:-3])) 
     en = ''.join(re.findall('\d',str(d[1])[:-3]))
-    op.write(st[:-3]+'.'+str("%.3d" %int(st[-3:])) +'|'+en[:-3]+'.'+str("%.3d" %int(en[-3:]))+'|OCR1|'+str("%06d" %d[6])+'|'+\
+    op.write(st[:-3]+'.'+str("%.3d" %int(st[-3:])) +'|'+en[:-3]+'.'+str("%.3d" %int(en[-3:]))+'|OCR2|'+str("%06d" %d[6])+'|'+\
       str("%03d" %int(d[2]))+' '+str("%03d" %int(d[3]))+' '+str("%03d" %int(d[4]))+' '+str("%03d" %int(d[5]))+'|')
     op.write(d[-1]+'\n')
 
@@ -279,31 +278,31 @@ def detect_text(file):
         if backup == 0:
           if cropped.size:
             cropped = cv2.cvtColor(cropped,cv2.COLOR_BGR2GRAY)
-            cv2.imwrite('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg',cropped)
+            cv2.imwrite('tickimg.jpg',cropped)
+            #cv2.imwrite('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg',cropped)
           prev = cap.get(cv2.CAP_PROP_POS_MSEC)
-          '''try:
-            text = ocr('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg','hin+eng',1,1)
-          except:
-            text = ""        
-          print(text)'''
           if len(array)>1:
               for i in array.values():
                 boxes = i
                 cropped = frame[int(boxes[2]):int(boxes[3]),int(boxes[0]-4):int(boxes[1])+4]
-                cv2.imwrite('scene/img.jpg',cropped)
-                scene('scene/img.jpg',prev,no,boxes)
-                cv2.imwrite('scene/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
+                cv2.imwrite('img.jpg',cropped)
+                scene('img.jpg',prev,no,boxes)
                 array ={}
+                #Extras
+                #cv2.imwrite('scene/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
         else:
-          cv2.imwrite('backup/tick-'+str(prev)+'.jpg',cropped)
+          #cv2.imwrite('backup/tick-'+str(prev)+'.jpg',cropped)
+          cv2.imwrite('backup.jpg',cropped)
+          ocr_ticker(op,boxes,no,prev,base)      
 
+        #Display boxes
         for j in range(4):
           p1 = (vertices[j][0], vertices[j][1])
           p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
           if arg <2:
             cv2.line(copy, p1, p2, (0, 255, 0), 2);
         cv2.imshow(kWinName,copy)
-    write(op)
+    write_scenetext(op)
     print("done")
     print("Writing")
     print(no)

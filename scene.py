@@ -1,9 +1,9 @@
-from bengali import ocr
 import pytesseract
 import cv2
 import sys
 import math
 import numpy as np
+from datetime import datetime,timedelta
 import os
 from PIL import Image
 from os import listdir
@@ -11,79 +11,126 @@ from os.path import isfile, join
 import re
 import pandas as pd
 
-txtfile = sys.argv[2]
 
-def scene(img):
-    try:
-        text,con = ocr(img,lang,0,0) 
-    except:
-        return
-    if text != '':
-        if len(re.findall('[a-z0-9]',text.lower())) > (len(re.findall('[\u0900-\u097Fa-zA-Z0-9]',text))*0.5) and (con.empty or con[1] <65):
-            print('skip',len(re.findall('[a-z0-9]',text.lower())) > (len(re.findall('[\u0900-\u097Fa-zA-Z0-9]',text))*0.5) and con.empty,text)
-        else:
-            text_keychars = re.findall(['a-z0-9\u0900-\u097F'],text.lower())
-            if text.lower()['a-z0-9\u0900-\u097F']
-
-
-
-'''def frameno(f):
-    return re.search('[1-9]\d*(\.\d+)?',f).group(0)
-
-def get_images():
-    l =listdir('scene/')
-    d = dict()
-    for i in range(0,len(l)):
-        if re.match('^\d+.*.??g',l[i]):
-            #print(l[i],frameno(l[i]))
-            ts = float(frameno(l[i]))
-            no = float(re.search('(\d+\.\d+).jpg',l[i]).group(0)[:-4])
-            if ts in d:
-                d[ts].append(no)
-            else:
-                d[ts] =[no]
-    for time in d:
-        d[time]=sorted(d[time])
-    t = sorted(d.items())
-    return t
-
-def fetch_output(op):
-    img = get_images()
-    filename ='scene/'
-    no=1
-    for lst in img[:10]:
-        print(lst[0])
-        if len(lst) >1:    
-            s,ms=divmod(lst[0],1000)
-            m,s=divmod(s,60)
-            h,m=divmod(m,60)
-            op.write(str(2019011312)+str("%02d" %(m))+str("%02d" %(s))+str('.')+str("%03d" %(ms))+'|')
-            s,ms = (s+2,ms+200) if ms+200<1000 else (s+3,ms+200-1000)
-            m,s = (m+1,s-60) if s>=60 else (m,s)
-            op.write(str(2019011312)+str("%02d" %(m))+str("%02d" %(s+2))+str('.')+str("%03d" %(ms))+'|'+'CC1|')
-            for i in lst[1]:
-                try:        
-                    text,con = ocr(filename+str(lst[0])+'.'+str(i)+'0.jpg',lang,1,0) 
-                    if text != '':
-                        if len(re.findall('[a-z0-9]',text.lower())) > (len(re.findall('[\u0900-\u097Fa-z0-9]',text))*0.5) and (con.empty or con[1] <65):
-                            print('skip',len(re.findall('[a-z0-9]',text.lower())) > (len(re.findall('[\u0900-\u097Fa-z0-9]',text))*0.5) and con.empty,text)
-                        else:
-                            op.write(text.replace('\r',' ').replace('\n',' '))
-                            op.write('. ')
-                except Exception as err:
-                    print(err,text)
-                    try:
-                        text,con = ocr(filename+str(lst[0])+'.'+str(i)+'00.jpg',lang,1,0) 
-                        if text != '':
-                            op.write(text.replace('\r',' ').replace('\n',' '))
-                            op.write('. ')
-                    except:
-                        print(str(lst[0])+'.'+str(i)+'0.jpg')
-            no+=1
-            op.write('\n')
-op = open("outputs/output1.txt","w+")
 lang = 'hin+eng'
-fetch_output(op)
+def ocr(file,lang,option,d): 
+  # Define config parameters.
+  # '--oem 1' for using LSTM OCR Engine
+  config = ('-l '+lang+' --oem 1 --psm 3')
+  if option == 1:
+    # Read image from disk
+    im = cv2.imread(file, cv2.IMREAD_COLOR)
+  else :
+    im = file
+  
+  if d == 1:
+    temp = im
+    temp = cv2.bitwise_not(temp)
+    temp = cv2.resize(temp, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+    thresh = 127
+    temp = cv2.threshold(temp, thresh, 255, cv2.THRESH_BINARY)[1]
+    temp = cv2.threshold(temp, 0, 255, cv2.THRESH_BINARY_INV)[1]
+    con = pytesseract.image_to_data(temp, output_type='data.frame')
+    con = con[con.conf != -1]
+    con = con.groupby(['block_num'])['conf'].mean()
+    text = pytesseract.image_to_string(temp, config=config)
+  else:
+    temp = im
+    temp = cv2.fastNlMeansDenoisingColored(temp,None,20,10,7,21)
+    temp = cv2.fastNlMeansDenoising(temp,None,10,7,21)
+    temp = cv2.bitwise_not(temp)
+    temp = cv2.resize(temp, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+    thresh = 127
+    temp = cv2.threshold(temp, thresh, 255, cv2.THRESH_BINARY)[1]
+    #temp = cv2.threshold(temp, 0, 255, cv2.THRESH_BINARY_INV)[1]
+    con = pytesseract.image_to_data(temp, output_type='data.frame')
+    con = con[con.conf != -1]
+    con = con.groupby(['block_num'])['conf'].mean()
+    text = pytesseract.image_to_string(temp, config=config)
 
-print(ocr('scene/'+'40.0.20.180.jpg',lang,1,0))
-devanagari :2309-2416'''
+  temp1 =im
+  #Comment for Bengali 
+  temp1 = cv2.fastNlMeansDenoisingColored(temp1,None,20,10,7,21)
+  temp1 = cv2.fastNlMeansDenoising(temp1,None,10,7,21)
+  temp1 = cv2.bitwise_not(temp1)
+  temp1 = cv2.resize(temp1, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+  thresh = 127
+  temp1 = cv2.threshold(temp1, thresh, 255, cv2.THRESH_BINARY)[1]
+  temp1 = cv2.threshold(temp1, 0, 255, cv2.THRESH_BINARY_INV)[1]  
+  con1 = pytesseract.image_to_data(temp1, output_type='data.frame')
+  con1 = con1[con1.conf != -1]
+  con1 = con1.groupby(['block_num'])['conf'].mean()    
+  text1 = pytesseract.image_to_string(temp1, config=config) 
+
+  # Test conditions
+  f=0
+  if con.empty and text != '' and con1.empty and text1 != '':
+    #print("no conf ",file,text,text1)
+    return (text,con)
+  if con.empty and con1.empty:
+    if text1 != '':
+      #print(1)
+      return (text1,con1)  
+    else: return text
+  elif con1.empty and text !='':
+    con1 =con
+    return (text,con)
+  elif con.empty and text1 !='':
+    con =con1
+    return (text1,con1)
+
+  #if (con[1] <40) and (con1[1]< 40):
+    #print(file)
+    #print('low',con1[1], con[1])
+    #return (text)
+  if con[1] > con1[1]:
+    text = text
+    #print(con[1])
+  elif con1[1] >con[1]:
+    text = text1
+    con = con1    
+    #print(con1[1])
+  #print(text)
+  # Print recognized text
+  return(text,con)
+
+filename = ''
+print("text")
+er = open('outputs/output1.txt',"w+")
+op = open('outputs/output1.srt',"w+")
+
+def writefile(op,boxes,no,ms,base,text):
+  start = base+timedelta(milliseconds=ms)
+  end = end = start + timedelta(milliseconds = 2200)
+  st = int(''.join(re.findall('\d',str(d[0]))))/1000000
+  en = int(''.join(re.findall('\d',str(d[1]))))/1000000
+  # Modify text
+  if lang =='ben' and len(text.split(' '))>2:
+    text =text.split(' ')[1:-1]
+    text = str(' '.join(text)).replace('\n',' ')
+  # Write output to file
+  op.write(str(round(st,3)) +'|'+str(round(en,3))+'|TIC2|'+str("%06d" %no)+'|'+\
+    str("%03d" %int(boxes[0]))+' '+str("%03d" %int(boxes[2]))+' '+str("%03d" %abs(boxes[1]-boxes[0]))+' '+str("%03d" %abs(boxes[3]-boxes[2]))+'|')
+  op.write(text.replace('\n',' ').replace('\r',' ')+'\n')
+
+
+## fetch_output(file,boxes,timestamp)
+
+def ocr_ticker(op,boxes,no,ts,base):
+  text=''
+  try:
+    text,con = ocr('tickimg.jpg',lang,1,1)
+    if "".join(text.split()) == '':
+      raise Exception('blank')
+    writefile(op,boxes,no,ts,base,text)      
+  except:
+    #Execute backup if tickimg is blank or exception
+    try:
+      text,con =ocr('backup.jpg',lang,1,1)
+      if text != '':
+        writefile(op,boxes,no,ts,base,text)
+    except Exception as err:
+      er.write(no,str(err))
+      print(err)
+      er.write('\n')
+  #return (text,con)
