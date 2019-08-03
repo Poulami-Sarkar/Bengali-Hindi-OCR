@@ -11,7 +11,7 @@ from os.path import isfile, join
 import re
 import pandas as pd
 
-
+base_dir =""
 lang = 'hin+eng'
 def ocr(file,lang,option,d): 
   # Define config parameters.
