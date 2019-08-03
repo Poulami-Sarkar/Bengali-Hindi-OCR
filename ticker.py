@@ -10,7 +10,7 @@ import numpy as np
 #from bengali import ocr,fetch_output
 from scene import ocr_ticker,ocr
 
-im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
+#im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
 
 confThreshold = 0.5
 nmsThreshold = 0.5
@@ -18,7 +18,7 @@ inpWidth = 480
 inpHeight = 320
 model = "frozen_east_text_detection.pb"
 
-net = cv2.dnn.readNet("frozen_east_text_detection.pb")
+net = cv2.dnn.readNet("/mnt/frozen_east_text_detection.pb")
 
 kWinName = "Text Detector running"
 #cv2.namedWindow(kWinName, cv2.WINDOW_NORMAL)
@@ -28,8 +28,8 @@ outNames.append("feature_fusion/concat_3")
 
 textlist =[]
 scenetext = dict()
-op =open('outputs/output1.txt','w+')
-video ="outputs/2019-01-13_0330_IN_DD-News_Samachar.txt"
+op =open('/mnt/outputs/output1.txt','w+')
+video ="/tv/2019/2019-01/2019-01-13/2019-01-13_0330_IN_DD-News_Samachar.txt"
 f1 = open(video,'r')
 text = f1.read()
 ts = re.search('\d{4}-\d{2}-\d{2} \d{2}:\d{2}([:]\d+)?',text).group(0)
@@ -307,7 +307,7 @@ def detect_text(file):
     print("Writing")
     print(no)
 
-detect_text('/mnt/rds/redhen/gallina/tv/2019/2019-01/2019-01-13/2019-01-13_0330_IN_DD-News_Samachar.mp4')
+detect_text('/tv/2019/2019-01/2019-01-13/2019-01-13_0330_IN_DD-News_Samachar.mp4')
 '''
 for file in listdir("video"):
 

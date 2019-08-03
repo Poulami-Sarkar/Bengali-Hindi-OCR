@@ -96,14 +96,14 @@ def ocr(file,lang,option,d):
 
 filename = ''
 print("text")
-er = open('outputs/output1.txt',"w+")
-op = open('outputs/output1.srt',"w+")
+er = open('/mnt/outputs/output1.txt',"w+")
+op = open('/mnt/outputs/output1.srt',"w+")
 
 def writefile(op,boxes,no,ms,base,text):
   start = base+timedelta(milliseconds=ms)
   end = end = start + timedelta(milliseconds = 2200)
-  st = int(''.join(re.findall('\d',str(d[0]))))/1000000
-  en = int(''.join(re.findall('\d',str(d[1]))))/1000000
+  st = int(''.join(re.findall('\d',str(start))))/1000000
+  en = int(''.join(re.findall('\d',str(end))))/1000000
   # Modify text
   if lang =='ben' and len(text.split(' '))>2:
     text =text.split(' ')[1:-1]
@@ -130,7 +130,7 @@ def ocr_ticker(op,boxes,no,ts,base):
       if text != '':
         writefile(op,boxes,no,ts,base,text)
     except Exception as err:
-      er.write(no,str(err))
+      er.write(str(no)+str(err))
       print(err)
       er.write('\n')
   #return (text,con)
