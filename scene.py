@@ -11,6 +11,7 @@ from os.path import isfile, join
 import re
 import pandas as pd
 
+
 base_dir =""
 lang = 'hin+eng'
 def ocr(file,lang,option,d): 
@@ -96,8 +97,8 @@ def ocr(file,lang,option,d):
 
 filename = ''
 print("text")
-er = open('/mnt/outputs/output1.txt',"w+")
-op = open('/mnt/outputs/output1.srt',"w+")
+er = open(base_dir+'outputs/output1.txt',"w+")
+op = open(base_dir+'outputs/output1.srt',"w+")
 
 def writefile(op,boxes,no,ms,base,text):
   start = base+timedelta(milliseconds=ms)
@@ -109,8 +110,10 @@ def writefile(op,boxes,no,ms,base,text):
     text =text.split(' ')[1:-1]
     text = str(' '.join(text)).replace('\n',' ')
   # Write output to file
-  op.write(str(round(st,3)) +'|'+str(round(en,3))+'|TIC2|'+str("%06d" %no)+'|'+\
+  print(boxes)
+  op.write(str("%.3f"%round(st,3)) +'|'+str("%.3f"%round(en,3))+'|TIC2|'+str("%06d" %no)+'|'+\
     str("%03d" %int(boxes[0]))+' '+str("%03d" %int(boxes[2]))+' '+str("%03d" %abs(boxes[1]-boxes[0]))+' '+str("%03d" %abs(boxes[3]-boxes[2]))+'|')
+  print(text)
   op.write(text.replace('\n',' ').replace('\r',' ')+'\n')
 
 
@@ -119,14 +122,14 @@ def writefile(op,boxes,no,ms,base,text):
 def ocr_ticker(op,boxes,no,ts,base):
   text=''
   try:
-    text,con = ocr('tickimg.jpg',lang,1,1)
+    text,con = ocr(base_dir+'tickimg.jpg',lang,1,1)
     if "".join(text.split()) == '':
       raise Exception('blank')
     writefile(op,boxes,no,ts,base,text)      
   except:
     #Execute backup if tickimg is blank or exception
     try:
-      text,con =ocr('backup.jpg',lang,1,1)
+      text,con =ocr(base_dir+'backup.jpg',lang,1,1)
       if text != '':
         writefile(op,boxes,no,ts,base,text)
     except Exception as err:

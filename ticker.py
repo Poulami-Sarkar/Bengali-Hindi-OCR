@@ -11,14 +11,16 @@ import numpy as np
 from scene import ocr_ticker,ocr
 
 #im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
+base_dir = ''
+video_dir = 'outputs/'
 
 confThreshold = 0.5
 nmsThreshold = 0.5
 inpWidth = 480
 inpHeight = 320
-model = "frozen_east_text_detection.pb"
 
-net = cv2.dnn.readNet("/mnt/frozen_east_text_detection.pb")
+model = "frozen_east_text_detection.pb"
+net = cv2.dnn.readNet(base_dir+"frozen_east_text_detection.pb")
 
 kWinName = "Text Detector running"
 #cv2.namedWindow(kWinName, cv2.WINDOW_NORMAL)
@@ -28,8 +30,9 @@ outNames.append("feature_fusion/concat_3")
 
 textlist =[]
 scenetext = dict()
-op =open('/mnt/outputs/output1.txt','w+')
-video ="/tv/2019/2019-01/2019-01-13/2019-01-13_0330_IN_DD-News_Samachar.txt"
+
+op =open(base_dir+'outputs/output1.txt','w+')
+video =video_dir+"2019-01-13_0330_IN_DD-News_Samachar.txt"
 f1 = open(video,'r')
 text = f1.read()
 ts = re.search('\d{4}-\d{2}-\d{2} \d{2}:\d{2}([:]\d+)?',text).group(0)
@@ -266,6 +269,7 @@ def detect_text(file):
         cv2.putText(frame, label, (0, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0))
         
         #cropped = frame[int(453):int(485),int(1):int(500)]
+
         cropped = frame[int(ticker[2]):int(ticker[3]),int(1):int(500)]
         if color_detect_ticker(cropped):
           array[int(ticker[2])] = [110,600,ticker[2],ticker[3]]
@@ -293,7 +297,7 @@ def detect_text(file):
         else:
           #cv2.imwrite('backup/tick-'+str(prev)+'.jpg',cropped)
           cv2.imwrite('backup.jpg',cropped)
-          ocr_ticker(op,boxes,no,prev,base)      
+          ocr_ticker(op,ticker,no,prev,base)      
 
         #Display boxes
         for j in range(4):
@@ -301,13 +305,15 @@ def detect_text(file):
           p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
           if arg <2:
             cv2.line(copy, p1, p2, (0, 255, 0), 2);
-        #cv2.imshow(kWinName,copy)
+        cv2.imshow(kWinName,copy)
     write_scenetext(op)
     print("done")
     print("Writing")
     print(no)
 
-detect_text('/tv/2019/2019-01/2019-01-13/2019-01-13_0330_IN_DD-News_Samachar.mp4')
+#detect_text(video_dir+'/2019-01-13_0330_IN_DD-News_Samachar.mp4')
+
+detect_text('video/2019-01-13_0330_IN_DD-News_Samachar.mp4')
 '''
 for file in listdir("video"):
 
