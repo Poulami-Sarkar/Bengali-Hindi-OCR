@@ -35,6 +35,7 @@ op =open(base_dir+'outputs/output1.txt','w+')
 video =video_dir+"2019-01-13_0330_IN_DD-News_Samachar.txt"
 f1 = open(video,'r')
 text = f1.read()
+op.write(text)
 ts = re.search('\d{4}-\d{2}-\d{2} \d{2}:\d{2}([:]\d+)?',text).group(0)
 base = (datetime.strptime(ts,"%Y-%m-%d %H:%M:%S")) - timedelta(hours=5,minutes=30)
 
