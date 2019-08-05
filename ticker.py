@@ -11,8 +11,11 @@ import numpy as np
 from scene import ocr_ticker,ocr
 
 #im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
-base_dir = ''
-video_dir = 'outputs/'
+base_dir = '/mnt/'
+video_dir = re.findall('/mnt/rds/redhen/gallina(/tv.*)',sys.argv[2])[0]
+video =sys.argv[1]
+lang = sys.argv[3]
+print(video_dir, video, lang)
 
 confThreshold = 0.5
 nmsThreshold = 0.5
@@ -31,9 +34,8 @@ outNames.append("feature_fusion/concat_3")
 textlist =[]
 scenetext = dict()
 
-op =open(base_dir+'outputs/output1.txt','w+')
-video =video_dir+"2019-01-13_0330_IN_DD-News_Samachar.txt"
-f1 = open(video,'r')
+op =open(base_dir+'outputs/'+video.replace('mp4','ocr'),'w+')
+f1 = open(video_dir+video.replace('mp4','txt'),'r')
 text = f1.read()
 op.write(text)
 ts = re.search('\d{4}-\d{2}-\d{2} \d{2}:\d{2}([:]\d+)?',text).group(0)
@@ -41,8 +43,7 @@ base = (datetime.strptime(ts,"%Y-%m-%d %H:%M:%S")) - timedelta(hours=5,minutes=3
 
 def scene(img,ms,no,boxes):
   try:
-      lang = 'hin+eng'
-      text,con = ocr(img,lang,1,0) 
+      text,con = ocr(img,lang,1,0)
       text = text.replace('\n',' ').replace('\r',' ')
   except Exception as err:
       print(err)
@@ -283,22 +284,22 @@ def detect_text(file):
         if backup == 0:
           if cropped.size:
             cropped = cv2.cvtColor(cropped,cv2.COLOR_BGR2GRAY)
-            cv2.imwrite('tickimg.jpg',cropped)
+            cv2.imwrite(base_dir+'tickimg.jpg',cropped)
             #cv2.imwrite('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg',cropped)
           prev = cap.get(cv2.CAP_PROP_POS_MSEC)
           if len(array)>1:
               for i in array.values():
                 boxes = i
                 cropped = frame[int(boxes[2]):int(boxes[3]),int(boxes[0]-4):int(boxes[1])+4]
-                cv2.imwrite('img.jpg',cropped)
-                scene('img.jpg',prev,no,boxes)
+                cv2.imwrite(base_dir+'img.jpg',cropped)
+                scene(base_dir+'img.jpg',prev,no,boxes)
                 array ={}
                 #Extras
                 #cv2.imwrite('scene/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
         else:
           #cv2.imwrite('backup/tick-'+str(prev)+'.jpg',cropped)
-          cv2.imwrite('backup.jpg',cropped)
-          ocr_ticker(op,ticker,no,prev,base)      
+          cv2.imwrite(base_dir+'backup.jpg',cropped)
+          ocr_ticker(op,ticker,no,prev,base,lang)      
 
         #Display boxes
         for j in range(4):
@@ -306,15 +307,16 @@ def detect_text(file):
           p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
           if arg <2:
             cv2.line(copy, p1, p2, (0, 255, 0), 2);
-        cv2.imshow(kWinName,copy)
+        #cv2.imshow(kWinName,copy)
     write_scenetext(op)
     print("done")
     print("Writing")
     print(no)
 
-#detect_text(video_dir+'/2019-01-13_0330_IN_DD-News_Samachar.mp4')
+print(video_dir+video)
+detect_text(video_dir+video)
 
-detect_text('video/2019-01-13_0330_IN_DD-News_Samachar.mp4')
+#detect_text('video/2019-01-13_0330_IN_DD-News_Samachar.mp4')
 '''
 for file in listdir("video"):
 

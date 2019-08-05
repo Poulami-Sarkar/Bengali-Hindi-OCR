@@ -12,8 +12,8 @@ import re
 import pandas as pd
 
 
-base_dir =""
-lang = 'hin+eng'
+base_dir ="/mnt/"
+lang ='hin+eng'
 def ocr(file,lang,option,d): 
   # Define config parameters.
   # '--oem 1' for using LSTM OCR Engine
@@ -100,7 +100,7 @@ print("text")
 er = open(base_dir+'outputs/output1.txt',"w+")
 op = open(base_dir+'outputs/output1.srt',"w+")
 
-def writefile(op,boxes,no,ms,base,text):
+def writefile(op,boxes,no,ms,base,text,lang):
   start = base+timedelta(milliseconds=ms)
   end = end = start + timedelta(milliseconds = 2200)
   st = int(''.join(re.findall('\d',str(start))))/1000000
@@ -119,19 +119,19 @@ def writefile(op,boxes,no,ms,base,text):
 
 ## fetch_output(file,boxes,timestamp)
 
-def ocr_ticker(op,boxes,no,ts,base):
+def ocr_ticker(op,boxes,no,ts,base,lang):
   text=''
   try:
     text,con = ocr(base_dir+'tickimg.jpg',lang,1,1)
     if "".join(text.split()) == '':
       raise Exception('blank')
-    writefile(op,boxes,no,ts,base,text)      
+    writefile(op,boxes,no,ts,base,text,lang)      
   except:
     #Execute backup if tickimg is blank or exception
     try:
       text,con =ocr(base_dir+'backup.jpg',lang,1,1)
       if text != '':
-        writefile(op,boxes,no,ts,base,text)
+        writefile(op,boxes,no,ts,base,text,lang)
     except Exception as err:
       er.write(str(no)+str(err))
       print(err)
