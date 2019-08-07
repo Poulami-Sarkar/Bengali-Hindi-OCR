@@ -5,16 +5,25 @@ import sys
 import math
 import re
 import pickle
-from os import listdir
 import numpy as np
+import os
+import os.path
 #from bengali import ocr,fetch_output
 from scene import ocr_ticker,ocr
 
+#Initialization
 #im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
-base_dir = '/mnt/'
-video_dir = re.findall('/mnt/rds/redhen/gallina(/tv.*)',sys.argv[2])[0]
+#base_dir = '/mnt/'
+#video_dir = re.findall('/mnt/rds/redhen/gallina(/tv.*)',sys.argv[2])[0]
+base_dir = ''
+video_dir = sys.argv[2]
+
 video =sys.argv[1]
 lang = sys.argv[3]
+if os.path.isfile(base_dir+'tickimg.jpg'):
+  os.remove(base_dir+'tickimg.jpg')
+if os.path.isfile(base_dir+'backup.jpg'):
+  os.remove(base_dir+'backup.jpg') 
 print(video_dir, video, lang)
 
 confThreshold = 0.5
@@ -285,7 +294,8 @@ def detect_text(file):
           if cropped.size:
             cropped = cv2.cvtColor(cropped,cv2.COLOR_BGR2GRAY)
             cv2.imwrite(base_dir+'tickimg.jpg',cropped)
-            #cv2.imwrite('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg',cropped)
+            #Extras
+            cv2.imwrite('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg',cropped)
           prev = cap.get(cv2.CAP_PROP_POS_MSEC)
           if len(array)>1:
               for i in array.values():
@@ -295,10 +305,11 @@ def detect_text(file):
                 scene(base_dir+'img.jpg',prev,no,boxes)
                 array ={}
                 #Extras
-                #cv2.imwrite('scene/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
+                cv2.imwrite('scene/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
         else:
           #cv2.imwrite('backup/tick-'+str(prev)+'.jpg',cropped)
-          cv2.imwrite(base_dir+'backup.jpg',cropped)
+          if cropped.size:
+            cv2.imwrite(base_dir+'backup.jpg',cropped)
           ocr_ticker(op,ticker,no,prev,base,lang)      
 
         #Display boxes
@@ -307,7 +318,7 @@ def detect_text(file):
           p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
           if arg <2:
             cv2.line(copy, p1, p2, (0, 255, 0), 2);
-        #cv2.imshow(kWinName,copy)
+        cv2.imshow(kWinName,copy)
     write_scenetext(op)
     print("done")
     print("Writing")

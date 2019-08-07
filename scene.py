@@ -13,6 +13,8 @@ import pandas as pd
 
 
 base_dir ="/mnt/"
+#base_dir =""                                                   #Uncomment to run locally
+
 lang ='hin+eng'
 def ocr(file,lang,option,d): 
   # Define config parameters.
@@ -125,15 +127,20 @@ def ocr_ticker(op,boxes,no,ts,base,lang):
     text,con = ocr(base_dir+'tickimg.jpg',lang,1,1)
     if "".join(text.split()) == '':
       raise Exception('blank')
-    writefile(op,boxes,no,ts,base,text,lang)      
+    writefile(op,boxes,no,ts,base,text,lang)     
+    os.remove(base_dir+'tickimg.jpg')
+    os.remove(base_dir+'backup.jpg') 
   except:
     #Execute backup if tickimg is blank or exception
     try:
       text,con =ocr(base_dir+'backup.jpg',lang,1,1)
       if text != '':
         writefile(op,boxes,no,ts,base,text,lang)
+      os.remove(base_dir+'tickimg.jpg')
+      os.remove(base_dir+'backup.jpg') 
     except Exception as err:
       er.write(str(no)+str(err))
       print(err)
       er.write('\n')
+  
   #return (text,con)
