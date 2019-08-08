@@ -12,11 +12,12 @@ import os.path
 from scene import ocr_ticker,ocr
 
 #Initialization
-#im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
-#base_dir = '/mnt/'
-#video_dir = re.findall('/mnt/rds/redhen/gallina(/tv.*)',sys.argv[2])[0]
-base_dir = ''
-video_dir = sys.argv[2]
+im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
+base_dir = '/mnt/'
+video_dir = re.findall('/mnt/rds/redhen/gallina(/tv.*)',sys.argv[2])[0]
+#Local run
+#base_dir = ''
+#video_dir = sys.argv[2]
 
 video =sys.argv[1]
 lang = sys.argv[3]
@@ -52,9 +53,16 @@ base = (datetime.strptime(ts,"%Y-%m-%d %H:%M:%S")) - timedelta(hours=5,minutes=3
 
 def scene(img,ms,no,boxes):
   try:
-      text,con = ocr(img,lang,1,0)
+    text,con = ocr(img,lang,1,0)
+    text = text.replace('\n',' ').replace('\r',' ')
+    if text == '':
+      raise Exception('error')
+  except :
+    try:
+      text,con = ocr(img,lang,1,1)
+      print('aslt',text)
       text = text.replace('\n',' ').replace('\r',' ')
-  except Exception as err:
+    except Exception as err:
       print(err)
       return
   if text != '':
@@ -279,11 +287,14 @@ def detect_text(file):
         # Put efficiency information
         cv2.putText(frame, label, (0, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0))
         
-        #cropped = frame[int(453):int(485),int(1):int(500)]
-
-        cropped = frame[int(ticker[2]):int(ticker[3]),int(1):int(500)]
+        if ticker[2:] == [999,0]:
+          cropped = np.empty(0)
+        else:
+          cropped = frame[int(453):int(485),int(1):int(500)]
+        #cropped = frame[int(ticker[2]):int(ticker[3]),int(1):int(500)]
         if color_detect_ticker(cropped):
-          array[int(ticker[2])] = [110,600,ticker[2],ticker[3]]
+          #array[int(ticker[2])] = [110,600,ticker[2],ticker[3]]
+          array[int(453)] = [110,600,453,485]
           cropped = np.empty(0)
         
         # Convert to grayscale
@@ -295,7 +306,8 @@ def detect_text(file):
             cropped = cv2.cvtColor(cropped,cv2.COLOR_BGR2GRAY)
             cv2.imwrite(base_dir+'tickimg.jpg',cropped)
             #Extras
-            cv2.imwrite('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg',cropped)
+            #cc = copy[int(453):int(485),int(1):int(500)]
+            #cv2.imwrite('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg',cc)
           prev = cap.get(cv2.CAP_PROP_POS_MSEC)
           if len(array)>1:
               for i in array.values():
@@ -305,7 +317,7 @@ def detect_text(file):
                 scene(base_dir+'img.jpg',prev,no,boxes)
                 array ={}
                 #Extras
-                cv2.imwrite('scene/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
+                #cv2.imwrite('scene/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
         else:
           #cv2.imwrite('backup/tick-'+str(prev)+'.jpg',cropped)
           if cropped.size:
