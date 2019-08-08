@@ -74,7 +74,7 @@ def ocr(file,lang,option,d):
     if text1 != '':
       #print(1)
       return (text1,con1)  
-    else: return text
+    else: return (text,con)
   elif con1.empty and text !='':
     con1 =con
     return (text,con)

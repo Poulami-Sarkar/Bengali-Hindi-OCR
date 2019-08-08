@@ -59,8 +59,8 @@ def scene(img,ms,no,boxes):
       raise Exception('error')
   except :
     try:
-      text,con = ocr(img,lang,1,1)
-      print('aslt',text)
+      #text,con = ocr(img,lang,1,1)
+      #print('aslt',text)
       text = text.replace('\n',' ').replace('\r',' ')
     except Exception as err:
       print(err)
@@ -291,7 +291,7 @@ def detect_text(file):
           cropped = np.empty(0)
         else:
           cropped = frame[int(453):int(485),int(1):int(500)]
-        #cropped = frame[int(ticker[2]):int(ticker[3]),int(1):int(500)]
+          #cropped = frame[int(ticker[2]):int(ticker[3]),int(1):int(500)]
         if color_detect_ticker(cropped):
           #array[int(ticker[2])] = [110,600,ticker[2],ticker[3]]
           array[int(453)] = [110,600,453,485]
@@ -330,7 +330,7 @@ def detect_text(file):
           p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
           if arg <2:
             cv2.line(copy, p1, p2, (0, 255, 0), 2);
-        cv2.imshow(kWinName,copy)
+        #cv2.imshow(kWinName,copy)
     write_scenetext(op)
     print("done")
     print("Writing")
