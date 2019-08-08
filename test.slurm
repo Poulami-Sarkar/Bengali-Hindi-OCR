@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -N 2
-#SBATCH -c 1
-#SBATCH --mem-per-cpu=1G
+#SBATCH -c 10
+#SBATCH --mem-per-cpu=12G
 #SBATCH --time=0-24:00:00     # 30 minutes
 #SBATCH --output=my.stdout
 #SBATCH --mail-user=poulamirulz@gmail.com
@@ -15,8 +15,9 @@ module load singularity/2.5.1
 for month  in /mnt/rds/redhen/gallina/tv/2019/*; do 
 	for day in $month'/'*;do 
 		for f in $(ls -R $day | grep DD-News.*.mp4);do 
-			echo $f $day'/'
-			singularity exec -B /mnt/rds/redhen/gallina/tv:/tv,`pwd`:/mnt ben-hin-ocr.img python3 /mnt/ticker.py $f $day'/' 'hin+eng'
+			date +"%T"
+			[ ! -f outputs/${f/mp4/ocr} ]  && echo $f $day'/' && singularity exec -B /mnt/rds/redhen/gallina/tv:/tv,`pwd`:/mnt ben-hin-ocr.img python3 /mnt/ticker.py $f $day'/' 'hin+eng'
+			date +"%T"
 		done
 	done 
 done
