@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -N 2
+#SBATCH -N 10
 #SBATCH -c 10
 #SBATCH --mem-per-cpu=12G
 #SBATCH --time=0-24:00:00     # 30 minutes
