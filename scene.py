@@ -142,5 +142,4 @@ def ocr_ticker(op,boxes,no,ts,base,lang):
       er.write(str(no)+str(err))
       print(err)
       er.write('\n')
-  
-  #return (text,con)
+#text,con = ocr(base_dir+'tickimg.jpg',lang,1,1)#return (text,con)

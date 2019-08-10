@@ -89,7 +89,7 @@ def scene(img,ms,no,boxes):
           else:
             textlist.append((text_keychars,0))
             scenetext[text_keychars] = [[start,end,boxes[0],boxes[2],(boxes[1]-boxes[0]),(boxes[3]-boxes[2]),no,no,text]]
-          #print(scenetext)            
+      print(text)            
 
 def write_scenetext(op):  
   for i,j in textlist:
