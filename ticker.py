@@ -22,6 +22,7 @@ video_dir = re.findall('/mnt/rds/redhen/gallina(/tv.*)',sys.argv[2])[0]
 video =sys.argv[1]
 lang = sys.argv[3]
 if os.path.isfile(base_dir+'tickimg.jpg'):
+  print("removing")	
   os.remove(base_dir+'tickimg.jpg')
 if os.path.isfile(base_dir+'backup.jpg'):
   os.remove(base_dir+'backup.jpg') 
