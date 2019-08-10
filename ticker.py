@@ -64,11 +64,12 @@ def scene(img,ms,no,boxes):
       #print('aslt',text)
       text = text.replace('\n',' ').replace('\r',' ')
     except Exception as err:
-      print(err)
+      #print(err)
       return
   if text != '':
       if len(re.findall('[a-z0-9]',text.lower())) > (len(re.findall('[\u0900-\u097Fa-zA-Z0-9]',text))*0.5) and (con.empty or con[1] <65):
-          print('skip',len(re.findall('[a-z0-9]',text.lower())) > (len(re.findall('[\u0900-\u097Fa-zA-Z0-9]',text))*0.5) and con.empty,text)
+          #print('skip',len(re.findall('[a-z0-9]',text.lower())) > (len(re.findall('[\u0900-\u097Fa-zA-Z0-9]',text))*0.5) and con.empty,text)
+          return
       else:
           text_keychars = re.findall('[\u0900-\u097Fa-zA-Z0-9]',text)
           text_keychars = ''.join(text_keychars)
@@ -76,14 +77,14 @@ def scene(img,ms,no,boxes):
           end = start + timedelta(milliseconds = 2200)
 
           if text_keychars in scenetext:
-            print(no,scenetext[text_keychars][-1][7] + 110)
+            #print(no,scenetext[text_keychars][-1][7] + 110)
             if(abs(scenetext[text_keychars][-1][7] - no) <= 330):
               scenetext[text_keychars][-1][7] = no
               scenetext[text_keychars][-1][1] = end
             else:
               textlist.append((text_keychars,len(scenetext[text_keychars])))
               scenetext[text_keychars].append([start,end,boxes[0],boxes[2],abs(boxes[1]-boxes[0]),abs(boxes[3]-boxes[2]),no,no,text])
-              print('app')
+              #print('app')
               #print(scenetext[text_keychars])
           else:
             textlist.append((text_keychars,0))

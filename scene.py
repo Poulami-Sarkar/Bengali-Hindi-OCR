@@ -112,7 +112,7 @@ def writefile(op,boxes,no,ms,base,text,lang):
     text =text.split(' ')[1:-1]
     text = str(' '.join(text)).replace('\n',' ')
   # Write output to file
-  print(boxes)
+  #print(boxes)
   op.write(str("%.3f"%round(st,3)) +'|'+str("%.3f"%round(en,3))+'|TIC2|'+str("%06d" %no)+'|'+\
     str("%03d" %int(boxes[0]))+' '+str("%03d" %int(boxes[2]))+' '+str("%03d" %abs(boxes[1]-boxes[0]))+' '+str("%03d" %abs(boxes[3]-boxes[2]))+'|')
   print(text)
