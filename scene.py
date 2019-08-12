@@ -107,12 +107,19 @@ def writefile(op,boxes,no,ms,base,text,lang):
   end = end = start + timedelta(milliseconds = 2200)
   st = int(''.join(re.findall('\d',str(start))))/1000000
   en = int(''.join(re.findall('\d',str(end))))/1000000
-  # Modify text
-  if lang =='ben' and len(text.split(' '))>2:
-    text =text.split(' ')[1:-1]
-    text = str(' '.join(text)).replace('\n',' ')
+
+  # Modify ticker text for continuity
+  splitted = text.split()
+  if len(splitted)>2:                                     
+    if len(splitted[0])<=8:                                                                 #English
+      text = text[1:]
+    #Eliminate last word
+    if re.findall('[A-Za-z0-9]',splitted[-1]) and len(splitted[-1])<=4:                     #English
+      text = text[:-1]
+    elif len(splitted[-1])<=8:                                                              #Hindi/Bengali
+      text = text[:-1]
+      
   # Write output to file
-  #print(boxes)
   op.write(str("%.3f"%round(st,3)) +'|'+str("%.3f"%round(en,3))+'|TIC2|'+str("%06d" %no)+'|'+\
     str("%03d" %int(boxes[0]))+' '+str("%03d" %int(boxes[2]))+' '+str("%03d" %abs(boxes[1]-boxes[0]))+' '+str("%03d" %abs(boxes[3]-boxes[2]))+'|')
   print(str(ms)+text)
