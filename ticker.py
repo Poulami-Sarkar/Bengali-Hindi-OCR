@@ -89,7 +89,7 @@ def scene(img,ms,no,boxes):
           else:
             textlist.append((text_keychars,0))
             scenetext[text_keychars] = [[start,end,boxes[0],boxes[2],(boxes[1]-boxes[0]),(boxes[3]-boxes[2]),no,no,text]]
-      print(text)            
+      #print(text)            
 
 def write_scenetext(op):  
   for i,j in textlist:
@@ -151,7 +151,7 @@ def color_detect_ticker(frame):
     resb=cv2.bitwise_and(frame, frame, mask = blue)
     resr=cv2.bitwise_and(frame, frame, mask = red)
 
-    if (np.count_nonzero(resb)>1000 and np.count_nonzero(resr)>5000):
+    if (np.count_nonzero(resb)>800 and np.count_nonzero(resr)>3000):
       return 1
     else :
       return 0
@@ -305,26 +305,28 @@ def detect_text(file):
         #print(ticker)
         if backup == 0:
           if cropped.size:
+            print('ticker')
             cropped = cv2.cvtColor(cropped,cv2.COLOR_BGR2GRAY)
             cv2.imwrite(base_dir+'tickimg.jpg',cropped)
             #Extras
             #cc = copy[int(453):int(485),int(1):int(500)]
-            #cv2.imwrite('img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg',cc)
+            #cv2.imwrite(base_dir+'img/tick'+'-'+str(cap.get(cv2.CAP_PROP_POS_MSEC))+'.jpg',cropped)
           prev = cap.get(cv2.CAP_PROP_POS_MSEC)
           if len(array)>1:
               for i in array.values():
                 boxes = i
-                cropped = frame[int(boxes[2]):int(boxes[3]),int(boxes[0]-4):int(boxes[1])+4]
-                cv2.imwrite(base_dir+'img.jpg',cropped)
+                crop_sc = frame[int(boxes[2]):int(boxes[3]),int(boxes[0]-4):int(boxes[1])+4]
+                cv2.imwrite(base_dir+'img.jpg',crop_sc)
                 scene(base_dir+'img.jpg',prev,no,boxes)
                 array ={}
                 #Extras
-                #cv2.imwrite('scene/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',cropped)
+                #cv2.imwrite(base_dir+'scene/'+str(prev)+'.'+str(hash(boxes[2]))+'.'+str(hash(boxes[0]))+'.jpg',crop_sc)
         else:
-          #cv2.imwrite('backup/tick-'+str(prev)+'.jpg',cropped)
           if cropped.size:
             cv2.imwrite(base_dir+'backup.jpg',cropped)
-          ocr_ticker(op,ticker,no,prev,base,lang)      
+            #cv2.imwrite(base_dir+'backup/tick-'+str(prev)+'.jpg',cropped)
+          if os.path.isfile(base_dir+'tickimg.jpg'):
+            ocr_ticker(op,ticker,no,prev,base,lang)      
 
         #Display boxes
         for j in range(4):

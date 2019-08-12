@@ -115,7 +115,7 @@ def writefile(op,boxes,no,ms,base,text,lang):
   #print(boxes)
   op.write(str("%.3f"%round(st,3)) +'|'+str("%.3f"%round(en,3))+'|TIC2|'+str("%06d" %no)+'|'+\
     str("%03d" %int(boxes[0]))+' '+str("%03d" %int(boxes[2]))+' '+str("%03d" %abs(boxes[1]-boxes[0]))+' '+str("%03d" %abs(boxes[3]-boxes[2]))+'|')
-  print(text)
+  print(str(ms)+text)
   op.write(text.replace('\n',' ').replace('\r',' ')+'\n')
 
 
@@ -128,6 +128,7 @@ def ocr_ticker(op,boxes,no,ts,base,lang):
     if "".join(text.split()) == '':
       raise Exception('blank')
     writefile(op,boxes,no,ts,base,text,lang)     
+    print('img')
     os.remove(base_dir+'tickimg.jpg')
     os.remove(base_dir+'backup.jpg') 
   except:
@@ -136,10 +137,11 @@ def ocr_ticker(op,boxes,no,ts,base,lang):
       text,con =ocr(base_dir+'backup.jpg',lang,1,1)
       if text != '':
         writefile(op,boxes,no,ts,base,text,lang)
+        print('backup')
       os.remove(base_dir+'tickimg.jpg')
       os.remove(base_dir+'backup.jpg') 
     except Exception as err:
       er.write(str(no)+str(err))
-      print(err)
+      #print(err)
       er.write('\n')
 #text,con = ocr(base_dir+'tickimg.jpg',lang,1,1)#return (text,con)
