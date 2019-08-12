@@ -345,6 +345,7 @@ def detect_text(file):
         #cv2.imshow(kWinName,copy)
     write_scenetext(op)
     op.write(endtag)
+    op.close()
     print("done")
     print("Writing")
     print(no)
