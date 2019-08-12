@@ -12,7 +12,6 @@ import os.path
 from scene import ocr_ticker,ocr
 
 #Initialization
-im = cv2.imread('img/input.png', cv2.IMREAD_COLOR)
 base_dir = '/mnt/'
 video_dir = re.findall('/mnt/rds/redhen/gallina(/tv.*)',sys.argv[2])[0]
 #Local run
@@ -48,15 +47,16 @@ scenetext = dict()
 op =open(base_dir+'outputs/'+video.replace('mp4','ocr'),'w+')
 f1 = open(video_dir+video.replace('mp4','txt'),'r')
 text = f1.read()
-if re.findall('END|',text[-2]):
-  endtag = text[-2]
-  text = '\n'.join(text[:-2])
-elif re.findall('END|',text[-1]): 
-  endtag = text[-1]
-  text = '\n'.join(text[:-1])
+split_head = text.split('\n')
+if re.findall('END|',split_head[-2]):
+  endtag = split_head[-2]
+  text = '\n'.join(split_head[:-2])
+elif re.findall('END|',split_head[-1]): 
+  endtag = split_head[-1]
+  text = '\n'.join(split_head[:-1])
 else:
   endtag = ''
-op.write(text)
+op.write(text+'\n')
 ts = re.search('\d{4}-\d{2}-\d{2} \d{2}:\d{2}([:]\d+)?',text).group(0)
 base = (datetime.strptime(ts,"%Y-%m-%d %H:%M:%S")) - timedelta(hours=5,minutes=30)
 
@@ -342,8 +342,8 @@ def detect_text(file):
           p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
           if arg <2:
             cv2.line(copy, p1, p2, (0, 255, 0), 2);
-        #cv2.imshow(kWinName,copy)
-    write_scenetext(op)
+        cv2.imshow(kWinName,copy)
+    #write_scenetext(op)
     op.write(endtag)
     op.close()
     print("done")

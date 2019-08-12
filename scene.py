@@ -15,7 +15,7 @@ import pandas as pd
 base_dir ="/mnt/"
 #base_dir =""                                                   #Uncomment to run locally
 
-lang ='hin+eng'
+#lang ='hin+eng'
 def ocr(file,lang,option,d): 
   # Define config parameters.
   # '--oem 1' for using LSTM OCR Engine
@@ -110,15 +110,16 @@ def writefile(op,boxes,no,ms,base,text,lang):
 
   # Modify ticker text for continuity
   splitted = text.split()
-  if len(splitted)>2:                                     
-    if len(splitted[0])<=8:                                                                 #English
-      text = text[1:]
+  if len(splitted)>2: 
+    print("here")                                    
+    if len(splitted[0])<=8:                                                                 #General
+      splitted = splitted[1:]
     #Eliminate last word
     if re.findall('[A-Za-z0-9]',splitted[-1]) and len(splitted[-1])<=4:                     #English
-      text = text[:-1]
-    elif len(splitted[-1])<=8:                                                              #Hindi/Bengali
-      text = text[:-1]
-      
+      splitted = splitted[:-1]
+    elif len(splitted[-1])<=8:
+      splitted = splitted[:-1]
+  text = ' '.join(splitted)
   # Write output to file
   op.write(str("%.3f"%round(st,3)) +'|'+str("%.3f"%round(en,3))+'|TIC2|'+str("%06d" %no)+'|'+\
     str("%03d" %int(boxes[0]))+' '+str("%03d" %int(boxes[2]))+' '+str("%03d" %abs(boxes[1]-boxes[0]))+' '+str("%03d" %abs(boxes[3]-boxes[2]))+'|')
