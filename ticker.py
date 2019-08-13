@@ -356,6 +356,5 @@ detect_text(video_dir+video)
 #detect_text('video/2019-01-13_0330_IN_DD-News_Samachar.mp4')
 '''
 for file in listdir("video"):
-
     detect_text("video/"+file)
 #fetch_output()'''

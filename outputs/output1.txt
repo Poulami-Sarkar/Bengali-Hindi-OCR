@@ -1,0 +1,596 @@
+1000OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+26740OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+33890OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34000OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34110OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34220OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34330OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34440OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34550OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34660OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34770OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34880OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34990OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35100OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35210OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35320OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35430OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35540OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35650OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35760OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35870OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35980OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36090OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36200OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36310OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36420OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36530OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36640OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36750OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36860OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36970OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37080OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37190OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37300OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37410OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37520OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37630OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37740OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37850OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37960OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+38070OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+38180OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+38290OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+38400OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+38510OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39280OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39390OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39500OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39610OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39720OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39830OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39940OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40050OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40160OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40270OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40380OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40490OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40600OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40710OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40820OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40930OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41040OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41150OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41260OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41370OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41480OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41590OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41700OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41810OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41920OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42030OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42140OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42250OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42360OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42470OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42580OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42690OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42800OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42910OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43020OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43130OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43240OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43350OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43460OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43570OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43680OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43790OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43900OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44010OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44120OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44230OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44340OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44450OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44560OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44670OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44780OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44890OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+1000OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+1000OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+1000OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+1000OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+1000OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+1000OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+26740OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+33890OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34000OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34110OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34220OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34330OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34440OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34550OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34660OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34770OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34880OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34990OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35100OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35210OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35320OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35430OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35540OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35650OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35760OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35870OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35980OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36090OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36200OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36310OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36420OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36530OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36640OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36750OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36860OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36970OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37080OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37190OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37300OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37410OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37520OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37630OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37740OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37850OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37960OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+38070OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+38180OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+38290OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+38400OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+38510OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39280OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39390OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39500OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39610OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39720OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39830OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39940OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40050OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40160OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40270OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40380OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40490OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40600OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40710OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40820OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40930OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41040OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41150OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41260OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41370OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41480OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41590OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41700OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41810OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41920OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42030OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42140OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42250OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42360OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42470OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42580OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42690OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42800OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42910OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43020OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43130OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43240OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43350OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43460OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43570OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43680OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43790OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43900OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44010OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44120OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44230OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44340OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44450OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44560OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44670OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44780OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44890OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+1000OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+1000OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+1000OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignment26740OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignment33890OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34000OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment34110OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment34220OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34330OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34440OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment34550OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignment34660OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34770OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+34880OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment34990OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35100OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment35210OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35320OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35430OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35540OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35650OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35760OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35870OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+35980OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36090OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36200OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36310OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36420OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment36530OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment36640OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36750OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36860OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+36970OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment37080OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37190OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37300OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment37410OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37520OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment37630OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment37740OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37850OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+37960OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+38070OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+38180OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment38290OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment38400OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+38510OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignment39280OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment39390OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39500OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39610OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment39720OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39830OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+39940OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40050OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40160OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40270OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40380OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40490OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40600OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40710OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment40820OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+40930OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41040OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41150OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41260OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+41370OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment41480OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment41590OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignment41700OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignment41810OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignment41920OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment42030OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42140OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment42250OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignment42360OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42470OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignment42580OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignment42690OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42800OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+42910OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43020OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43130OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43240OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43350OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43460OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43570OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43680OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43790OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+43900OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44010OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44120OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44230OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44340OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44450OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44560OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44670OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44780OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+44890OpenCV(3.4.4) ../modules/imgproc/src/resize.cpp:3784: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
