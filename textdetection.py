@@ -30,11 +30,11 @@ class benhinocr:
 
   def __init__(self):
     #Initialization
-    #self.base_dir = '/mnt/'
-    #self.video_dir = re.findall('/mnt/rds/redhen/gallina(/tv.*)',sys.argv[2])[0]
+    self.base_dir = '/mnt/'
+    self.video_dir = re.findall('/mnt/rds/redhen/gallina(/tv.*)',sys.argv[2])[0]
     #Local run
-    self.base_dir = ''
-    self.video_dir = sys.argv[2]
+    #self.base_dir = ''
+    #self.video_dir = sys.argv[2]
 
     self.video =sys.argv[1]
     self.lang = sys.argv[3]
@@ -332,7 +332,7 @@ def detect_text(file,ocr1):
           if arg <2:
             cv2.line(copy, p1, p2, (0, 255, 0), 2);
         # Video display
-        cv2.imshow(ocr1.kWinName,copy)
+        #cv2.imshow(ocr1.kWinName,copy)
     write_scenetext(ocr1)
     ocr1.op.write(ocr1.endtag)
     ocr1.op.close()

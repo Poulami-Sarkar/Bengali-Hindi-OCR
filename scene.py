@@ -13,7 +13,7 @@ import pandas as pd
 
 
 base_dir ="/mnt/"
-base_dir =""                                                   #Uncomment to run locally
+#base_dir =""                                                   #Uncomment to run locally
 
 def ocr(file,lang,option,d): 
   # Define config parameters.
