@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH -N 5
 #SBATCH -c 5
+#SBATCH -g 2
 #SBATCH --mem-per-cpu=12G
 #SBATCH --time=0-24:00:00     # 30 minutes
 #SBATCH --output=my.stdout
@@ -16,7 +17,7 @@ for month  in /mnt/rds/redhen/gallina/tv/2019/*; do
 	for day in $month'/'*;do 
 		for f in $(ls -R $day | grep DD-News.*.mp4);do 
 			date +"%T"
-			[ ! -f outputs/${f/mp4/ocr} ]  && echo $f $day'/' && singularity exec -B /mnt/rds/redhen/gallina/tv:/tv,`pwd`:/mnt ben-hin-ocr.img python3 /mnt/ticker.py $f $day'/' 'hin+eng'
+			[ ! -f outputs/${f/mp4/ocr} ]  && echo $f $day'/' && singularity exec -B /mnt/rds/redhen/gallina/tv:/tv,`pwd`:/mnt ben-hin-ocr.img python3 /mnt/textdetection.py $f $day'/' 'hin+eng'
 			date +"%T"
 		done
 	done 

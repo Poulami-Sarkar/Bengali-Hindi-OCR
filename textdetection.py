@@ -326,11 +326,11 @@ def detect_text(file,ocr1):
             ocr_ticker(ocr1.op,ticker,no,prev,ocr1.base,ocr1.lang)      
 
         # Display green boxes
-        for j in range(4):
-          p1 = (vertices[j][0], vertices[j][1])
+        '''for j in range(4):
+         p1 = (vertices[j][0], vertices[j][1])
           p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
           if arg <2:
-            cv2.line(copy, p1, p2, (0, 255, 0), 2);
+            cv2.line(copy, p1, p2, (0, 255, 0), 2);'''
         # Video display
         #cv2.imshow(ocr1.kWinName,copy)
     write_scenetext(ocr1)
