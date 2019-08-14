@@ -1749,4 +1749,6 @@ scene: local variable 'text' referenced before assignment37190OpenCV(4.1.0) /io/
 
 37410OpenCV(4.1.0) /io/opencv/modules/imgproc/src/resize.cpp:3718: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
 
-scene: local variable 'text' referenced before assignment
+scene: local variable 'text' referenced before assignment230OpenCV(4.1.0) /io/opencv/modules/imgproc/src/resize.cpp:3718: error: (-215:Assertion failed) !ssize.empty() in function 'resize'
+
+scene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignmentscene: local variable 'text' referenced before assignment
