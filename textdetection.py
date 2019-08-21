@@ -342,4 +342,8 @@ def detect_text(file,ocr1):
 
 ocr1 = benhinocr()
 print(ocr1.video_dir+ocr1.video)
-detect_text(ocr1.video_dir+ocr1.video,ocr1)
+if sys.argv[3] == 'ben':
+  detect_text(ocr1.base_dir+'temp.mp4',ocr1)
+else:
+  detect_text(ocr1.video_dir+ocr1.video,ocr1)
+
