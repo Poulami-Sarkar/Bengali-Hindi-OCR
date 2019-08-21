@@ -315,7 +315,7 @@ def detect_text(file,ocr1):
                 ocr1.scene(ocr1.base_dir+'img.jpg',prev,no,boxes)
                 array ={}
                 #Extras
-                cv2.imwrite(ocr1.base_dir+'scene/'+str(prev)+'.'+str(ocr1.hashfn(boxes[2]))+'.'+str(ocr1.hashfn(boxes[0]))+'.jpg',crop_sc)
+                #cv2.imwrite(ocr1.base_dir+'scene/'+str(prev)+'.'+str(ocr1.hashfn(boxes[2]))+'.'+str(ocr1.hashfn(boxes[0]))+'.jpg',crop_sc)
         else:
           if cropped.size:
             cv2.imwrite(ocr1.base_dir+'backup.jpg',cropped)
