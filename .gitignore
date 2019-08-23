@@ -3,9 +3,11 @@
 *VSCode*
 *nohup*
 *stdout*
-ben-hin-ocr.img
+ben-hin-ocr.*
 *.ocr
 *.ipynb
 *video/*
 *.jpg
 *.png
+*.mp4
+*.log
