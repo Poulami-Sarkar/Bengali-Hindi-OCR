@@ -19,7 +19,7 @@ for month  in /mnt/rds/redhen/gallina/tv/2019/*; do
 	for day in $month'/'*;do 
 		for f in $(ls -R $day | grep DD-News.*.mp4);do 
 			date +"%T"
-			[ ! -f outputs/${f/mp4/ocr} ]  && echo $f $day'/' && singularity exec -B /mnt/rds/redhen/gallina/tv:/tv,`pwd`:/mnt ben-hin-ocr.img python3 /mnt/textdetection.py $f $day'/' 'hin+eng'
+			[ ! -f outputs/${f/mp4/ocr} ]  && echo $f $day'/' && singularity exec -B /mnt/rds/redhen/gallina/tv:/tv,`pwd`:/mnt ben-hin-ocr.sif python3 /mnt/textdetection.py $f $day'/' 'hin+eng'
 			date +"%T"
 		done
 	done 
@@ -30,8 +30,10 @@ for month  in /mnt/rds/redhen/gallina/tv/2019/*; do
 	for day in $month'/'*;do 
 		for f in $(ls -R $day | grep Bengali.*.mp4);do 
 			date +"%T"
-			ffmpeg -i $day'/'$f -y -vf yadif -c:v libx264 -preset slow -crf 19 -c:a aac -b:a 256k 'temp.mp4'
-			[ ! -f outputs/${f/mp4/ocr} ]  && echo $f $day'/' && singularity exec -B /mnt/rds/redhen/gallina/tv:/tv,`pwd`:/mnt ben-hin-ocr.img python3 /mnt/textdetection.py $f $day'/' 'ben'
+			viddir=${day/mnt\/rds\/redhen\/gallina\/tv/tv}
+			echo $viddir
+			[ ! -f outputs/${f/mp4/ocr} ]  && singularity exec -B /mnt/rds/redhen/gallina/tv:/tv,`pwd`:/mnt ben-hin-ocr.sif ffmpeg -i $viddir'/'$f -y -vf yadif -c:v libx264 -preset slow -crf 19 -c:a aac -b:a 256k '/mnt/temp.mp4'
+			[ ! -f outputs/${f/mp4/ocr} ]  && echo $f $day'/' && singularity exec -B /mnt/rds/redhen/gallina/tv:/tv,`pwd`:/mnt ben-hin-ocr.sif python3 /mnt/textdetection.py $f $day'/' 'ben'
 			date +"%T"
 		done
 	done 

@@ -73,11 +73,13 @@ class benhinocr:
     except :
       try:
         #text,con = ocr(img,lang,1,1)
+        return
         #print('aslt')
-        text = text.replace('\n',' ').replace('\r',' ')
+        #text = text.replace('\n',' ').replace('\r',' ')
       except Exception as err:
         er = open(self.base_dir+'outputs/output1.txt',"a")
         er.write("scene: "+str(err))
+        er.close()
         return
     if text != '':
         if len(re.findall('[a-z0-9]',text.lower())) > (len(re.findall('[\u0900-\u097Fa-zA-Z0-9]',text))*0.5) and (con.empty or con[1] <65):

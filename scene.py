@@ -139,6 +139,9 @@ def ocr_ticker(op,boxes,no,ts,base,lang):
       os.remove(base_dir+'tickimg.jpg')
       os.remove(base_dir+'backup.jpg') 
     except Exception as err:
+      return
+      ''' ERROR
       er = open(base_dir+'outputs/output1.txt',"a")
       er.write(str(no)+str(err))
       er.write('\n')
+      er.close()'''
